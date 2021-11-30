@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.StatisticsAllRadiationBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.StatisticsAllRadiationBody" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="data_time" property="dataTime" jdbcType="TIMESTAMP" />
+    <result column="uvi_hour_max" property="uviHourMax" jdbcType="DOUBLE" />
+    <result column="station" property="station" jdbcType="VARCHAR" />
+    <result column="uvi_hour_accumu" property="uviHourAccumu" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, data_time, uvi_hour_max, station, uvi_hour_accumu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sta_uviplus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sta_uviplus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.StatisticsAllRadiationBody" >
+    insert into t_sta_uviplus (id, data_time, uvi_hour_max, 
+      station, uvi_hour_accumu)
+    values (#{id,jdbcType=INTEGER}, #{dataTime,jdbcType=TIMESTAMP}, #{uviHourMax,jdbcType=DOUBLE}, 
+      #{station,jdbcType=VARCHAR}, #{uviHourAccumu,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.StatisticsAllRadiationBody" >
+    insert into t_sta_uviplus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataTime != null" >
+        data_time,
+      </if>
+      <if test="uviHourMax != null" >
+        uvi_hour_max,
+      </if>
+      <if test="station != null" >
+        station,
+      </if>
+      <if test="uviHourAccumu != null" >
+        uvi_hour_accumu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataTime != null" >
+        #{dataTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uviHourMax != null" >
+        #{uviHourMax,jdbcType=DOUBLE},
+      </if>
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="uviHourAccumu != null" >
+        #{uviHourAccumu,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cuit.linzhi.vo.StatisticsAllRadiationBody" >
+    update t_sta_uviplus
+    <set >
+      <if test="dataTime != null" >
+        data_time = #{dataTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uviHourMax != null" >
+        uvi_hour_max = #{uviHourMax,jdbcType=DOUBLE},
+      </if>
+      <if test="station != null" >
+        station = #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="uviHourAccumu != null" >
+        uvi_hour_accumu = #{uviHourAccumu,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cuit.linzhi.vo.StatisticsAllRadiationBody" >
+    update t_sta_uviplus
+    set data_time = #{dataTime,jdbcType=TIMESTAMP},
+      uvi_hour_max = #{uviHourMax,jdbcType=DOUBLE},
+      station = #{station,jdbcType=VARCHAR},
+      uvi_hour_accumu = #{uviHourAccumu,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllRecords" resultType="com.cuit.linzhi.vo.StatisticsAllRadiationBody">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    t_sta_uviplus
+  </select>
+
+
+</mapper>

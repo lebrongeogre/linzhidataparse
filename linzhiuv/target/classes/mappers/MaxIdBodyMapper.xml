@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.MaxIdBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.MaxIdBody" >
+    <id column="max_id" property="maxId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sta_maxid
+    where max_id = #{maxId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.MaxIdBody" >
+    insert into t_sta_maxid (max_id)
+    values (#{maxId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.MaxIdBody" >
+    insert into t_sta_maxid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="maxId != null" >
+        max_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="maxId != null" >
+        #{maxId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertMaxId" parameterType="Integer" >
+        insert into t_sta_maxid(max_id)
+        values (#{maxId})
+  </insert>
+
+
+</mapper>

@@ -1,0 +1,106 @@
+## 端口号  上下文路径
+server:
+  port: 8080
+  servlet:
+    context-path: /linzhi
+
+
+## 数据源配置
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/linzhi?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: hpj
+    password: qwer1234
+
+  ## freemarker
+  freemarker:
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/
+
+  ## 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+
+  data:
+    months:## mybatis 配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.cuit.linzhi.vo;
+  configuration:
+    map-underscore-to-camel-case: true
+
+## pageHelper 分页
+pagehelper:
+  helper-dialect: mysql
+
+## 设置 dao 日志打印级别
+logging:
+  level:
+    com:
+      cuit:
+        linzhi: debug
+## 月均值统计service配置
+
+spring.data.years:
+  - 2017
+  - 2018
+  - 2019
+  - 2020
+  - 2021
+
+spring.data.months:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+
+spring.data.stations:
+  - 林芝
+  - 拉萨
+#  - 阿里
+#  - 昌都
+#  - 那曲
+#  - 日喀则
+#  - 山南
+
+spring.data.longitude:
+  "[林芝]": 94度21分37.38秒
+
+
+spring.excel.filePath:
+  - D:\monkey\紫外数据\拉萨55591\R文件1993-2020
+  - D:\monkey\紫外数据\阿里55228\R文件2006-2020
+  - D:\monkey\紫外数据\昌都56137\R文件2016-2020
+  - D:\monkey\紫外数据\林芝56312\R文件2014-2019
+  - D:\monkey\紫外数据\那曲55299\R文件2015-2020
+  - D:\monkey\紫外数据\日喀则55578\R文件2010-2020
+
+spring.excel.configMap:
+  codeMap:
+      "[55591]": 拉萨
+      "[55228]": 阿里
+      "[56137]": 昌都
+      "[56312]": 林芝
+      "[55299]": 那曲
+      "[55578]": 日喀则
+  rowColMap:
+      "[startRow]": 6
+      "[startCol]": 13
+      "[endCol]": 26
+
+

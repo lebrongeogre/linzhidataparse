@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.StatisticsMonthAccumulationBodyMapper" >
+<resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.StatisticsMonthAccumulationBody" >
+  <result column="station" property="station" jdbcType="VARCHAR" />
+  <result column="month_value" property="monthValue" jdbcType="INTEGER" />
+  <result column="midmoon_value" property="midmoonValue" jdbcType="INTEGER" />
+  <result column="year" property="year" jdbcType="INTEGER" />
+  <result column="month" property="month" jdbcType="INTEGER" />
+</resultMap>
+<insert id="insert" parameterType="com.cuit.linzhi.vo.StatisticsMonthAccumulationBody" >
+    insert into t_sta_monthaccumulation (station, month_value, midmoon_value,
+      year, month)
+    values (#{station,jdbcType=VARCHAR}, #{monthValue,jdbcType=INTEGER}, #{midmoonValue,jdbcType=INTEGER},
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER})
+  </insert>
+<insert id="insertSelective" parameterType="com.cuit.linzhi.vo.StatisticsMonthAccumulationBody" >
+  insert into t_sta_monthaccumulation
+  <trim prefix="(" suffix=")" suffixOverrides="," >
+    <if test="station != null" >
+      station,
+    </if>
+    <if test="monthValue != null" >
+      month_value,
+    </if>
+    <if test="midmoonValue != null" >
+      midmoon_value,
+    </if>
+    <if test="year != null" >
+      year,
+    </if>
+    <if test="month != null" >
+      month,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="station != null" >
+      #{station,jdbcType=VARCHAR},
+    </if>
+    <if test="monthValue != null" >
+      #{monthValue,jdbcType=INTEGER},
+    </if>
+    <if test="midmoonValue != null" >
+      #{midmoonValue,jdbcType=INTEGER},
+    </if>
+    <if test="year != null" >
+      #{year,jdbcType=INTEGER},
+    </if>
+    <if test="month != null" >
+      #{month,jdbcType=INTEGER},
+    </if>
+  </trim>
+</insert>
+
+<insert id="insertSingleTerm" parameterType="com.cuit.linzhi.vo.StatisticsMonthAccumulationBody" >
+    insert into t_sta_monthaccumulation (station,year,month,month_value,midmoon_value)
+    values
+      (#{station}, #{year}, #{month}, #{monthValue}, #{midmoonValue})
+  </insert>
+  <select id="queryByTerm" parameterType="String" resultType="com.cuit.linzhi.vo.StatisticsMonthAccumulationBody">
+    select
+    station,year,month,month_value,midmoon_value
+    from
+    t_sta_monthaccumulation
+    where
+    station=#{stationIndex} and month=#{monthIndex} and year=#{yearIndex}
+  </select>
+
+  <!-- 插入对象列表 -->
+  <insert  id="insertBatch" parameterType="java.util.List" >
+    insert into t_sta_monthaccumulation (station,year,month,month_value,midmoon_value)
+    values
+    <foreach collection="list" item="item" index="index"  separator=",">
+      (#{station}, #{year}, #{month}, #{monthValue}, #{midmoonValue})
+    </foreach>
+  </insert>
+
+</mapper>

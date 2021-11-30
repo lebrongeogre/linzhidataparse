@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.RadiationMonthBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.RadiationMonthBody" >
+    <result column="station" property="station" jdbcType="VARCHAR" />
+    <result column="data_time" property="dataTime" jdbcType="VARCHAR" />
+    <result column="month_value" property="monthValue" jdbcType="INTEGER" />
+    <result column="midmoon_value" property="midmoonValue" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.RadiationMonthBody" >
+    insert into t_radiation_monthaccumulation (station, date_time, month_value, 
+      midmoon_value)
+    values (#{station,jdbcType=VARCHAR}, #{dateTime,jdbcType=VARCHAR}, #{monthValue,jdbcType=INTEGER}, 
+      #{midmoonValue,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.RadiationMonthBody" >
+    insert into t_radiation_monthaccumulation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        station,
+      </if>
+      <if test="dateTime != null" >
+        date_time,
+      </if>
+      <if test="monthValue != null" >
+        month_value,
+      </if>
+      <if test="midmoonValue != null" >
+        midmoon_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTime != null" >
+        #{dateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="monthValue != null" >
+        #{monthValue,jdbcType=INTEGER},
+      </if>
+      <if test="midmoonValue != null" >
+        #{midmoonValue,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <sql id="Base_Column_List">
+    station,data_time,month_value,midmoon_value
+  </sql>
+
+  <select id="queryAllRecords" resultType="com.cuit.linzhi.vo.RadiationMonthBody">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    t_radiation_monthaccumulation
+  </select>
+
+
+</mapper>

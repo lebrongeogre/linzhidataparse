@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.AstronomicalIrradianceParsedBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.AstronomicalIrradianceParsedBody" >
+    <result column="station" property="station" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="uv_month_accumulation" property="uvMonthAccumulation" jdbcType="DOUBLE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceParsedBody" >
+    insert into "t_astronomical_irradianceparsed" (station, year, month, 
+      uv_month_accumulation)
+    values (#{station,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
+      #{uvMonthAccumulation,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceParsedBody" >
+    insert into "t_astronomical_irradianceparsed"
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        station,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="uvMonthAccumulation != null" >
+        uv_month_accumulation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="uvMonthAccumulation != null" >
+        #{uvMonthAccumulation,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

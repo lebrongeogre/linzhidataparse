@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cuit.linzhi.dao.TrueSolarTimeBodyMapper">
+
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.TrueSolarTimeBody">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="day" jdbcType="VARCHAR" property="date" />
+    <result column="true_solar_time" jdbcType="VARCHAR" property="trueSolarTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, date, true_solar_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from true_solar_time
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from true_solar_time
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.TrueSolarTimeBody">
+    insert into true_solar_time (id, date, true_solar_time)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{trueSolarTime,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.TrueSolarTimeBody">
+    insert into true_solar_time
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="trueSolarTime != null">
+        true_solar_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="trueSolarTime != null">
+        #{trueSolarTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.cuit.linzhi.vo.TrueSolarTimeBody">
+    update true_solar_time
+    <set>
+      <if test="date != null">
+        day = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="trueSolarTime != null">
+        true_solar_time = #{trueSolarTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.cuit.linzhi.vo.TrueSolarTimeBody">
+    update true_solar_time
+    set day = #{date,jdbcType=VARCHAR},
+      true_solar_time = #{trueSolarTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

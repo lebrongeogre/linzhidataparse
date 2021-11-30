@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cuit.linzhi.dao.TrueMeanTimeDifferenceMapper">
+
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.TrueMeanTimeDifferenceBody">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="time_difference_value" jdbcType="INTEGER" property="timeDifferenceValue" />
+  </resultMap>
+
+  <select id="queryAllRecords" resultType="com.cuit.linzhi.vo.TrueMeanTimeDifferenceBody">
+    select * from t_true_mean_time_difference
+  </select>
+
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.TrueMeanTimeDifferenceBody">
+    insert into true_mean_time_difference (id, date, time_difference_value)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{timeDifferenceValue,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.TrueMeanTimeDifferenceBody">
+    insert into true_mean_time_difference
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="timeDifferenceValue != null">
+        time_difference_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="timeDifferenceValue != null">
+        #{timeDifferenceValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

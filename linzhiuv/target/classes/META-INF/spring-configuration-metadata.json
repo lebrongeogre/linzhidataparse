@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "name": "spring.data",
+      "type": "com.cuit.linzhi.config.StatisticsConfig",
+      "sourceType": "com.cuit.linzhi.config.StatisticsConfig"
+    },
+    {
+      "name": "spring.excel",
+      "type": "com.cuit.linzhi.config.RadiationExcelReadConfig",
+      "sourceType": "com.cuit.linzhi.config.RadiationExcelReadConfig"
+    },
+    {
+      "name": "spring.table",
+      "type": "com.cuit.linzhi.config.TransTablesConfig",
+      "sourceType": "com.cuit.linzhi.config.TransTablesConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.data.longitude",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "com.cuit.linzhi.config.StatisticsConfig"
+    },
+    {
+      "name": "spring.data.months",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.cuit.linzhi.config.StatisticsConfig"
+    },
+    {
+      "name": "spring.data.stations",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.cuit.linzhi.config.StatisticsConfig"
+    },
+    {
+      "name": "spring.data.years",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.cuit.linzhi.config.StatisticsConfig"
+    },
+    {
+      "name": "spring.excel.config-map",
+      "type": "java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>",
+      "sourceType": "com.cuit.linzhi.config.RadiationExcelReadConfig"
+    },
+    {
+      "name": "spring.excel.file-path",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.cuit.linzhi.config.RadiationExcelReadConfig"
+    }
+  ],
+  "hints": []
+}

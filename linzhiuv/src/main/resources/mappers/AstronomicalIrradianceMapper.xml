@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cuit.linzhi.dao.AstronomicalIrradianceMapper">
+
+    <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.AstronomicalIrradianceBody">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="station" jdbcType="VARCHAR" property="station"/>
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="month" jdbcType="VARCHAR" property="month"/>
+        <result column="day" jdbcType="VARCHAR" property="day"/>
+        <result column="astronomical_irradiance" jdbcType="DOUBLE" property="astronomicalIrradiance"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, region, station, year, month, day, astronomical_irradiance
+    </sql>
+
+    <insert id="insertList">
+    insert into t_astronomical_irradiance(`id`, `region`, `station`, `year`, `month`, `day`, `astronomical_irradiance`)
+            values(#{id}, #{region}, #{station}, #{year}, #{month}, #{day}, #{astronomical_irradiance})
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from astronomical_irradiance
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from astronomical_irradiance
+    where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceBody">
+    insert into astronomical_irradiance (id, region, station, 
+      year, month, day, true_solar_time, 
+      astronomical_irradiance)
+    values (#{id,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{station,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{trueSolarTime,jdbcType=VARCHAR}, 
+      #{astronomicalIrradiance,jdbcType=DOUBLE})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceBody">
+        insert into astronomical_irradiance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="region != null">
+                region,
+            </if>
+            <if test="station != null">
+                station,
+            </if>
+            <if test="year != null">
+                year,
+            </if>
+            <if test="month != null">
+                month,
+            </if>
+            <if test="day != null">
+                day,
+            </if>
+            <if test="trueSolarTime != null">
+                true_solar_time,
+            </if>
+            <if test="astronomicalIrradiance != null">
+                astronomical_irradiance,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="region != null">
+                #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="station != null">
+                #{station,jdbcType=VARCHAR},
+            </if>
+            <if test="year != null">
+                #{year,jdbcType=VARCHAR},
+            </if>
+            <if test="month != null">
+                #{month,jdbcType=VARCHAR},
+            </if>
+            <if test="day != null">
+                #{day,jdbcType=VARCHAR},
+            </if>
+            <if test="trueSolarTime != null">
+                #{trueSolarTime,jdbcType=VARCHAR},
+            </if>
+            <if test="astronomicalIrradiance != null">
+                #{astronomicalIrradiance,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceBody">
+        update astronomical_irradiance
+        <set>
+            <if test="region != null">
+                region = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="station != null">
+                station = #{station,jdbcType=VARCHAR},
+            </if>
+            <if test="year != null">
+                year = #{year,jdbcType=VARCHAR},
+            </if>
+            <if test="month != null">
+                month = #{month,jdbcType=VARCHAR},
+            </if>
+            <if test="day != null">
+                day = #{day,jdbcType=VARCHAR},
+            </if>
+            <if test="trueSolarTime != null">
+                true_solar_time = #{trueSolarTime,jdbcType=VARCHAR},
+            </if>
+            <if test="astronomicalIrradiance != null">
+                astronomical_irradiance = #{astronomicalIrradiance,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.cuit.linzhi.vo.AstronomicalIrradianceBody">
+    update astronomical_irradiance
+    set region = #{region,jdbcType=VARCHAR},
+      station = #{station,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      true_solar_time = #{trueSolarTime,jdbcType=VARCHAR},
+      astronomical_irradiance = #{astronomicalIrradiance,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

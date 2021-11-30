@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.StatisticsYiTaBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.StatisticsYiTaBody" >
+    <result column="station" property="station" jdbcType="VARCHAR" />
+    <result column="uvi_month_accumulation" property="uviMonthAccumulation" jdbcType="DOUBLE" />
+    <result column="uv_month_accumulation" property="uvMonthAccumulation" jdbcType="DOUBLE" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.StatisticsYiTaBody" >
+    insert into t_sta_uvuvitotal (station, uvi_month_accumulation, uv_month_accumulation, 
+      year, month)
+    values (#{station,jdbcType=VARCHAR}, #{uviMonthAccumulation,jdbcType=DOUBLE}, #{uvMonthAccumulation,jdbcType=DOUBLE}, 
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.StatisticsYiTaBody" >
+    insert into t_sta_uvuvitotal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        station,
+      </if>
+      <if test="uviMonthAccumulation != null" >
+        uvi_month_accumulation,
+      </if>
+      <if test="uvMonthAccumulation != null" >
+        uv_month_accumulation,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="uviMonthAccumulation != null" >
+        #{uviMonthAccumulation,jdbcType=DOUBLE},
+      </if>
+      <if test="uvMonthAccumulation != null" >
+        #{uvMonthAccumulation,jdbcType=DOUBLE},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <!-- 插入对象列表 -->
+  <insert  id="insertList" parameterType="java.util.List" >
+    insert into t_sta_uvuvitotal (station,uvi_month_accumulation,uv_month_accumulation,year,month)
+    values
+    <foreach collection="list" item="item" index="index"  separator=",">
+      (#{item.station}, #{item.uvi_month_accumulation},#{item.uv_month_accumulation},#{item.year},#{item.month})
+    </foreach>
+  </insert>
+
+
+</mapper>

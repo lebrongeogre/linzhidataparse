@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.UVParsedBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.cuit.linzhi.vo.UVParsedBody" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="station" property="station" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="day" property="day" jdbcType="VARCHAR" />
+    <result column="hour" property="hour" jdbcType="VARCHAR" />
+    <result column="uvi_hour_max" property="uviHourMax" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, station, year, month, day, hour, uvi_hour_max
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_radiation_parsed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_radiation_parsed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cuit.linzhi.vo.UVParsedBody" >
+    insert into t_radiation_parsed (id, station, year, 
+      month, day, hour, uvi_hour_max
+      )
+    values (#{id,jdbcType=INTEGER}, #{station,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{hour,jdbcType=VARCHAR}, #{uviHourMax,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cuit.linzhi.vo.UVParsedBody" >
+    insert into t_radiation_parsed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="station != null" >
+        station,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="day != null" >
+        day,
+      </if>
+      <if test="hour != null" >
+        hour,
+      </if>
+      <if test="uviHourMax != null" >
+        uvi_hour_max,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="uviHourMax != null" >
+        #{uviHourMax,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cuit.linzhi.vo.UVParsedBody" >
+    update t_radiation_parsed
+    <set >
+      <if test="station != null" >
+        station = #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null" >
+        hour = #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="uviHourMax != null" >
+        uvi_hour_max = #{uviHourMax,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cuit.linzhi.vo.UVParsedBody" >
+    update t_radiation_parsed
+    set station = #{station,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      hour = #{hour,jdbcType=VARCHAR},
+      uvi_hour_max = #{uviHourMax,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="queryByTerm" parameterType="String" resultType="com.cuit.linzhi.vo.UVParsedBody">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    t_radiation_parsed
+    where
+    station=#{stationIndex} and year=#{yearIndex} and month=#{monthIndex}
+  </select>
+
+  <select id="queryByTwoTerm" parameterType="String" resultType="com.cuit.linzhi.vo.UVParsedBody">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    t_radiation_parsed
+    where
+    station=#{stationIndex} and month=#{monthIndex}
+  </select>
+
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into t_radiation_parsed (station,year,month,day,hour,uvi_hour_max)
+    values
+    <foreach collection="list" item="item" index="index"  separator=",">
+      (#{item.station}, #{item.year}, #{item.month}, #{item.day}, #{item.hour}, #{item.uviHourMax})
+    </foreach>
+  </insert>
+
+  <insert id="insertSingleTerm" useGeneratedKeys="true" keyProperty="id" parameterType="com.cuit.linzhi.vo.UVParsedBody" >
+    insert into t_radiation_parsed (station,year,month,day,hour,uvi_hour_max)
+    values
+      (#{station}, #{year}, #{month}, #{day}, #{hour}, #{uviHourMax})
+  </insert>
+
+
+
+</mapper>

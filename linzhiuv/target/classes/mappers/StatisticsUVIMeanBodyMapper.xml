@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cuit.linzhi.dao.StatisticsUVIMeanBodyMapper" >
+
+
+  <!-- 插入对象列表 -->
+  <insert  id="insertList" parameterType="java.util.List" >
+    insert into t_sta_mean (station,year,mean_1,mean_2,mean_3,mean_4,mean_5,mean_6,mean_7,mean_8,mean_9,mean_10,mean_11,mean_12)
+    values
+    <foreach collection="list" item="item" index="index"  separator=",">
+      (#{item.station}, #{item.year},#{item.mean1},#{item.mean2},#{item.mean3},#{item.mean4},#{item.mean5},#{item.mean6},#{item.mean7},#{item.mean8},#{item.mean9},#{item.mean10},#{item.mean11},#{item.mean12})
+    </foreach>
+  </insert>
+
+
+</mapper>
