@@ -1,0 +1,20 @@
+2021-11-23 10:45:51 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 11:06:03 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 11:27:03 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 11:27:09 [ main:5244 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：uvief20180714_uvi.tif
+2021-11-23 11:27:09 [ main:5785 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\uviindex\uvief20180714.hdf，生成TIF文件, 耗时：4s
+2021-11-23 15:04:51 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 15:15:26 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 15:15:31 [ main:5055 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：uvief20190714_uvi.tif
+2021-11-23 15:15:31 [ main:5597 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\uviindex\uvief20190714.hdf，生成TIF文件, 耗时：4s
+2021-11-23 15:59:37 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 15:59:42 [ main:5531 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：uvief20200714_uvi.tif
+2021-11-23 15:59:43 [ main:6065 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\uviindex\uvief20200714.hdf，生成TIF文件, 耗时：4s
+2021-11-23 16:04:12 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 16:09:10 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf4.H4iosp
+2021-11-23 16:09:14 [ main:3894 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：uvief20210714_uvi.tif
+2021-11-23 16:09:14 [ main:4428 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\uviindex\uvief20210714.hdf，生成TIF文件, 耗时：2s
+2021-11-26 10:57:43 [ main:0 ]-[ ERROR ] D:\ncFile目录未找到需要处理的文件！
+2021-11-26 10:58:11 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！
+2021-11-26 10:59:34 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！
+2021-11-26 11:02:24 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！

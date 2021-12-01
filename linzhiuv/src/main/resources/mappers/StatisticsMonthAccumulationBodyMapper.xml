@@ -71,7 +71,7 @@
     insert into t_sta_monthaccumulation (station,year,month,month_value,midmoon_value)
     values
     <foreach collection="list" item="item" index="index"  separator=",">
-      (#{station}, #{year}, #{month}, #{monthValue}, #{midmoonValue})
+      (#{item.station}, #{item.year}, #{item.month}, #{item.monthValue}, #{item.midmoonValue})
     </foreach>
   </insert>
 

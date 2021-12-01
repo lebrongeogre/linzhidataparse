@@ -1,0 +1,1 @@
+javaw -jar JtDataDealJob-1.0-SNAPSHOT.jar >runlog.log 2>&1 &

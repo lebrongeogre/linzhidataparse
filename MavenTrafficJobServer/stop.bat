@@ -1,0 +1,1 @@
+java -jar JtDataDealJob-1.0-SNAPSHOT.jar -stop

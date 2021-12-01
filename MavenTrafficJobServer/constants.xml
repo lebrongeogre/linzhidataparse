@@ -1,0 +1,1126 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<constants>
+    <!-- 支持四种结点类型：string, map, list, entry, 其中仅map中可以嵌套其他对象 -->
+    <string id="serverPort">55001</string>
+    <map id="terminal">
+        <entry key="code">jt01</entry>
+        <entry key="name">交通系统数据接收处理及模型处理</entry>
+    </map>
+    <!-- 数据监控管理配置 -->
+    <map id="monitor">
+        <entry key="url">http://113.62.179.37:8088/monitor/services/SoapService?wsdl</entry>
+        <entry key="nameSpace">http://service.sm.wzw.duit.com</entry>
+    </map>
+    <!-- 交通气象数据库配置 -->
+    <map id="dbconfig">
+        <entry key="driverClassName">com.mysql.cj.jdbc.Driver</entry>
+        <entry key="url">jdbc:mysql://192.168.0.61:3306/metedb?serverTimezone=GMT%2B8&amp;&amp;useSSL=false&amp;characterEncoding=UTF-8</entry>
+
+        <!--
+         <entry key="driverClassName">com.mysql.jdbc.Driver</entry>
+         <entry key="url">jdbc:mysql://139.9.229.84:3306/smfire?useUnicode=true&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;characterEncoding=UTF-8</entry>
+         -->
+        <!--192.168.0.95:3306-->
+        <entry key="username">dpuser</entry>
+        <entry key="password">Dp@123456</entry>
+
+        <!--# 初始化连接数，初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时-->
+        <entry key="initialSize">2</entry>
+        <!--# 最大连接数-->
+        <entry key="maxActive">10</entry>
+        <!-- 最大等待时间。获取连接时最大等待时间，单位毫秒。配置了maxWait之后，#缺省启用公平锁，并发效率会有所下降，#如果需要可以通过配置useUnfairLock属性为true使用非公平锁。-->
+        <entry key="maxWait">3000</entry>
+    </map>
+
+    <list id="threads">
+        <entry>TCPServerThread</entry>
+    </list>
+    <map id="TCPServerThread">
+        <entry key="desc">接收数据</entry>
+        <entry key="processClass">com.cuit.dp.thread.TCPServerThread</entry>
+    </map>
+    <map id="tcpipServer">
+        <!-- TCP服务端口 -->
+        <entry key="tcpPort">9088</entry>
+        <!-- 传输加密算法，""为不加密 -->
+        <entry key="encryption"></entry>
+    </map>
+
+    <list id="jobs">
+        <entry>GetWeatherDataProcess</entry>
+        <entry>WebWarnMsgProcess</entry>
+        <entry>GetAQIDataProcess</entry>
+        <entry>GetScjcWaterDayDataProcess</entry>
+        <entry>GetScjcWaterPreviewDataProcess</entry>
+        <entry>GetAQIDataFromWebProcess</entry>
+    </list>
+
+    <map id="SMFireWarnProcess">
+        <entry key="desc">火险预警</entry>
+        <entry key="processClass">com.cuit.mete.smfire.SMFireWarnProcess</entry>
+        <entry key="trigger">0 7 */1 * * ?</entry>
+    </map>
+
+    <!-- 温度计算 -->
+    <list id="TEM">
+        <!-- 模型所需因子 -->
+        <entry>tem_min</entry>
+        <entry>tem_max</entry>
+    </list>
+
+    <!-- 火险指数计算基础配置 -->
+    <map id="smfire_base">
+        <!-- 县界 -->
+        <entry key="smborder">data\\SM_SHP\\SM.shp</entry>
+        <!-- 地物类别 -->
+        <entry key="Ca">data\\SM_P_Ca.tif</entry>
+        <!-- 与道路距离 -->
+        <entry key="Cb">data\\SM_P_Cb.tif</entry>
+        <!-- 与居民点距离 -->
+        <entry key="Cc">data\\SM_P_Cc.tif</entry>
+        <!-- 结果输出位置 -->
+        <entry key="outpath">temp\\smtestout</entry>
+        <!-- 像元大小 -->
+        <entry key="cellsize">0.00027</entry>
+        <!-- 地区系数K -->
+        <entry key="kfactor">0.65</entry>
+        <!-- 是否干旱 -->
+        <entry key="isdry">false</entry>
+    </map>
+    <!-- 火险综合指数计算 -->
+    <list id="FFCDI">
+        <!-- 需要插值的因子 -->
+        <entry>pre_1h</entry>
+        <entry>tem_max</entry>
+        <entry>rhu</entry>
+        <entry>win_s_avg_2mi</entry>
+    </list>
+    <!-- 火险指数计算 -->
+    <list id="FFDI">
+        <!-- 需要插值的因子 -->
+        <entry>pre_1h</entry>
+        <entry>tem_max</entry>
+        <entry>rhu</entry>
+        <entry>win_s_avg_2mi</entry>
+    </list>
+    <!-- 火险指数等级 -->
+    <map id="fireindex_level">
+        <entry key="level1">0.04</entry>
+        <entry key="level2">0.38</entry>
+        <entry key="level3">0.43</entry>
+        <entry key="level4">0.65</entry>
+        <entry key="level5">0.73</entry>
+    </map>
+    <!-- GeoServer配置 -->
+    <map id="geoserverconfig">
+        <entry key="geoserverurl">http://183.220.240.140:8083//geoserver/</entry>
+        <entry key="username">admin</entry>
+        <entry key="password">geoserver</entry>
+        <entry key="workspaces">sm</entry>
+        <entry key="FFCDIstyles">ffcdistyle</entry>
+        <entry key="FFDIstyles">ffdistyle</entry>
+    </map>
+
+    <map id="DealGrib2GeoServerProcess">
+
+        <entry key="desc">智能网格预报处理转GeoServer</entry>
+        <entry key="processClass">com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcess</entry>
+        <entry key="temptifpath">d:\temp\outtemptif</entry>
+        <entry key="trigger">0 31 */1 * * ?</entry>
+        <list id="Files">
+            <!--            <entry>RTPRE</entry>-->
+            <entry>UVI_INDEX</entry>
+
+            <!--
+             <entry>RTPRE</entry>
+             <entry>SPHC_ER01</entry>
+             <entry>SPHC_TMP</entry>
+             <entry>SPHC_ECT</entry>
+             <entry>SPHC_ERH</entry>
+             <entry>SPHC_PRES</entry>
+             <entry>SPHC_TMP</entry>
+             -->
+        </list>
+
+        <map id="UVI_INDEX">
+            <entry key="path">D:\ncFile\uviindex</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.hdf]]>
+            </entry>
+            <entry key="Datatype">紫外线指数</entry>
+            <entry key="times">0</entry>
+            <entry key="element">Erythemal UV index</entry>
+            <entry key="elementname">UVI日值</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">5</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+        <map id="RTPRE">
+            <entry key="path">D:\ncFile\</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">实况融合产品</entry>
+            <entry key="times">0</entry>
+            <entry key="element">Total precipitation @ Ground or water surface</entry>
+            <entry key="elementname">1小时降水融合产品</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">57</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+
+
+        <map id="S5P_OFFL_L2__NO2">
+            <entry key="path">D:\ncFile\气象</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">TROPOMI二级二氧化氮产品</entry>
+            <entry key="element">Tropospheric vertical column of nitrogen dioxide</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">68</entry>
+            <entry key="elementname">二氧化氮对流层垂直柱</entry>
+
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">etCloud2021</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+
+
+        <map id="SPHC_EDA10">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_EDA10</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="times">1,2,3,4,5,6</entry>
+            <entry key="element">u-component of wind (1_Hour Average) @ Specified height level above ground</entry>
+            <entry key="elementname">风速</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">47</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+
+            <map id="warn">
+                <list id="WarnLevel">
+                    <entry>Lvl1</entry>
+                    <entry>Lvl2</entry>
+                    <entry>Lvl3</entry>
+                    <entry>Lvl4</entry>
+                    <entry>Lvl5</entry>
+                    <entry>Lvl6</entry>
+                </list>
+                <entry key="Datatype">预警产品</entry>
+                <entry key="elementname">大风</entry>
+                <entry key="warnstyles">hightem2021</entry>
+                <!--从小到大的值进行定义-->
+                <map id="Lvl1">
+                    <entry key="value">1</entry>
+                    <entry key="type">一级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">2</entry>
+                </map>
+                <map id="Lvl2">
+                    <entry key="value">2</entry>
+                    <entry key="type">二级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">4</entry>
+
+                </map>
+                <map id="Lvl3">
+                    <entry key="value">3</entry>
+                    <entry key="type">三级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">6</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl4">
+                    <entry key="value">4</entry>
+                    <entry key="type">四级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">10</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl5">
+                    <entry key="value">5</entry>
+                    <entry key="type">五级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">15</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl6">
+                    <entry key="value">6</entry>
+                    <entry key="type">六级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">99999999</entry>
+                    <entry key="warn">true</entry>
+                </map>
+            </map>
+        </map>
+        <map id="SPHC_ER01">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_ER01</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="times">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</entry>
+            <entry key="element">Total precipitation (1_Hour Accumulation) @ Ground or water surface</entry>
+            <entry key="elementname">逐小时降水</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">46</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+
+            <map id="warn">
+                <list id="WarnLevel">
+                    <entry>Lvl1</entry>
+                    <entry>Lvl2</entry>
+                    <entry>Lvl3</entry>
+                    <entry>Lvl4</entry>
+                    <entry>Lvl5</entry>
+                    <entry>Lvl6</entry>
+                </list>
+                <entry key="Datatype">预警产品</entry>
+                <entry key="elementname">暴雨</entry>
+                <entry key="warnstyles">hightem2021</entry>
+                <!--从小到大的值进行定义-->
+                <map id="Lvl1">
+                    <entry key="value">1</entry>
+                    <entry key="type">一级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">1</entry>
+                </map>
+                <map id="Lvl2">
+                    <entry key="value">2</entry>
+                    <entry key="type">二级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">3</entry>
+
+                </map>
+                <map id="Lvl3">
+                    <entry key="value">3</entry>
+                    <entry key="type">三级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">7</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl4">
+                    <entry key="value">4</entry>
+                    <entry key="type">四级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">10</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl5">
+                    <entry key="value">5</entry>
+                    <entry key="type">五级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">15</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl6">
+                    <entry key="value">6</entry>
+                    <entry key="type">六级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">99999999</entry>
+                    <entry key="warn">true</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_ECT">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_ECT</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="times">1,2,3,4,5,6</entry>
+            <entry key="element">Total cloud cover (1_Hour Average) @ Cloud base level</entry>
+            <entry key="elementname">云量</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">45</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">etCloud2021</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+
+        <map id="SPHC_ERH">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_ERH</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="times">1,2,3,4,5,6</entry>
+            <entry key="element">Relative humidity (1_Hour Average) @ Specified height level above ground</entry>
+            <entry key="elementname">逐小时相对湿度</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">45</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">relativeHumidity2021</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+        <map id="SPHC_PRES">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_PRES</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="elementname">地面能见度</entry>
+            <entry key="times">1,2,3,4,5,6</entry>
+            <entry key="element">Visibility (1_Hour Average) @ Ground or water surface</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">46</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">visibility2021</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+            <map id="warn">
+                <list id="WarnLevel">
+                    <entry>Lvl1</entry>
+                    <entry>Lvl2</entry>
+                    <entry>Lvl3</entry>
+                    <entry>Lvl4</entry>
+                    <entry>Lvl5</entry>
+                    <entry>Lvl6</entry>
+                </list>
+                <entry key="Datatype">预警产品</entry>
+                <entry key="elementname">大雾</entry>
+                <entry key="warnstyles">densefog2021</entry>
+                <!--从小到大的值进行定义-->
+                <map id="Lvl1">
+                    <entry key="value">6</entry>
+                    <entry key="type">蓝色</entry>
+                    <entry key="name">无雾</entry>
+                    <entry key="Interruptvalue">50</entry>
+                </map>
+                <map id="Lvl2">
+                    <entry key="value">5</entry>
+                    <entry key="type">蓝色</entry>
+                    <entry key="name">薄雾</entry>
+                    <entry key="Interruptvalue">100</entry>
+
+                </map>
+                <map id="Lvl3">
+                    <entry key="value">4</entry>
+                    <entry key="type">蓝色</entry>
+                    <entry key="name">轻雾</entry>
+                    <entry key="Interruptvalue">200</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl4">
+                    <entry key="value">3</entry>
+                    <entry key="type">黄色</entry>
+                    <entry key="name">中雾</entry>
+                    <entry key="Interruptvalue">500</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl5">
+                    <entry key="value">2</entry>
+                    <entry key="type">橙色</entry>
+                    <entry key="name">大雾</entry>
+                    <entry key="Interruptvalue">1000</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl6">
+                    <entry key="value">1</entry>
+                    <entry key="type">红色</entry>
+                    <entry key="name">浓雾</entry>
+                    <entry key="Interruptvalue">99999999</entry>
+                    <entry key="warn">true</entry>
+                </map>
+            </map>
+        </map>
+        <map id="SPHC_TMP">
+            <entry key="path">D:\\Temp\\融合产品\\SPHC\\SPHC_TMP</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.GRB2$]]>
+            </entry>
+            <entry key="Datatype">智能网格预报</entry>
+            <entry key="times">1,2,3,4,5,6</entry>
+            <entry key="element">Temperature (1_Hour Average) @ Specified height level above ground</entry>
+            <entry key="elementname">逐小时温度</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">45</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">LAST</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">hourTemper2021</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+
+            <map id="warn">
+                <list id="WarnLevel">
+                    <entry>Lvl1</entry>
+                    <entry>Lvl2</entry>
+                    <entry>Lvl3</entry>
+                    <entry>Lvl4</entry>
+                    <entry>Lvl5</entry>
+                    <entry>Lvl6</entry>
+                </list>
+                <entry key="Datatype">预警产品</entry>
+                <entry key="elementname">道路结冰</entry>
+                <entry key="warnstyles">densefog2021</entry>
+                <!--从小到大的值进行定义-->
+                <map id="Lvl1">
+                    <entry key="value">6</entry>
+                    <entry key="type">六级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">-10</entry>
+                </map>
+                <map id="Lvl2">
+                    <entry key="value">5</entry>
+                    <entry key="type">五级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">5</entry>
+
+                </map>
+                <map id="Lvl3">
+                    <entry key="value">4</entry>
+                    <entry key="type">四级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">10</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl4">
+                    <entry key="value">3</entry>
+                    <entry key="type">三级</entry>
+                    <entry key="name">较易爆胎</entry>
+                    <entry key="Interruptvalue">20</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl5">
+                    <entry key="value">2</entry>
+                    <entry key="type">二级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">25</entry>
+                    <entry key="warn">true</entry>
+                </map>
+                <map id="Lvl6">
+                    <entry key="value">1</entry>
+                    <entry key="type">一级</entry>
+                    <entry key="name"></entry>
+                    <entry key="Interruptvalue">99999999</entry>
+                    <entry key="warn">true</entry>
+                </map>
+            </map>
+
+        </map>
+
+        <map id="cawsRealtimeDataProcess">
+            <entry key="desc">CAWSAnyWhereServer数据同步</entry>
+            <entry key="processClass">com.cuit.dp.jobs.smfire.job.RealtimeDataProcess</entry>
+            <map id="srcdb">
+                <entry key="driverClassName">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+                <entry key="url">jdbc:sqlserver://192.168.30.10:1433;DatabaseName=CAWSAnyWhereServer</entry>
+                <entry key="username">sa</entry>
+                <entry key="password"></entry>
+                <entry key="initialSize">2</entry>
+                <entry key="maxActive">10</entry>
+                <entry key="maxWait">3000</entry>
+            </map>
+            <entry key="trigger">0 0/3 * * * ?</entry>
+        </map>
+
+        <map id="GetWeatherDataProcess">
+            <entry key="desc">获取天气预报数据</entry>
+            <entry key="processClass">com.cuit.mete.jobs.mete.job.GetWeatherDataProcess</entry>
+            <entry key="trigger">0 7/30 * * * ?</entry>
+            <entry key="url">http://www.nmc.cn/rest/weather</entry>
+            <!-- 站点配置 -->
+            <list id="stations">
+                <entry>57411</entry>
+            </list>
+            <!-- 预报时效配置 -->
+            <list id="agings">
+                <entry>0</entry>
+                <entry>24</entry>
+                <entry>48</entry>
+                <entry>72</entry>
+            </list>
+        </map>
+
+        <map id="WebWarnMsgProcess">
+            <entry key="desc">国突平台预警信息提取</entry>
+            <entry key="processClass">com.cuit.mete.jobs.mete.job.ReadWebWarnMsg2DBProcess</entry>
+            <entry key="trigger">0 0/8 * * * ?</entry>
+            <map id="ApiConfig">
+                <entry key="url">http://int.scqx.net/</entry>
+                <entry key="id">1295</entry>
+                <entry key="key">07ad1677c5f87ae2</entry>
+            </map>
+            <map id="FilterConfig">
+                <!--预警类型，如暴雨事件、雷电事件、地质灾害、高温事件、暴雨事件、森林火险-->
+                <entry key="etypechnFilter"></entry>
+                <!--red/orange/yellow/unknown之一-->
+                <entry key="lvlFilter"></entry>
+                <!--内容关键字（字符）-->
+                <entry key="DescFilter"></entry>
+                <!--区域，如成都、南充、石棉-->
+                <entry key="areaFilter">四川</entry>
+            </map>
+        </map>
+
+        <map id="GetAQIDataProcess">
+            <entry key="desc">从环境监测总站网上取空气质量日报（指定城市）</entry>
+            <entry key="processClass">com.cuit.mete.jobs.aqi.job.GetCitysAQIDataFromWebProcess</entry>
+            <entry key="trigger">0 4/10 * * * ?</entry>
+            <entry key="url">http://www.scnewair.cn:6112/publish/getAllCityDayAQIC</entry>
+            -        <!-- 站点配置 -->
+            <list id="stations">
+                <entry>成都</entry>
+                <entry>南充</entry>
+            </list>
+            <!-- 重复次数 -->
+            <entry key="repeat">2</entry>
+            <!-- 休眠毫秒数 -->
+            <entry key="sleep">10000</entry>
+        </map>
+
+        <map id="GetScjcWaterPreviewDataProcess">
+            <entry key="desc">获取水质实况</entry>
+            <entry key="processClass">com.cuit.mete.jobs.waterquality.job.GetScjcWaterDataProcess</entry>
+            <entry key="url">http://119.6.113.148:9090/scszjcsj/szjc_sj/DataPublish/preview.xhtml</entry>
+            <entry key="type">preview</entry>
+            <entry key="trigger">0 12/30 * * * ?</entry>
+        </map>
+
+        <map id="GetScjcWaterDayDataProcess">
+            <entry key="desc">获取水质日报</entry>
+            <entry key="processClass">com.cuit.mete.jobs.waterquality.job.GetScjcWaterDataProcess</entry>
+            <entry key="url">http://119.6.113.148:9090/scszjcsj/szjc_sj/DataPublish/day.xhtml</entry>
+            <entry key="type">day</entry>
+            <entry key="trigger">0 10 1-23 * * ?</entry>
+        </map>
+
+        <map id="GetAQIDataFromWebProcess">
+            <entry key="desc">从环境监测总站网上取空气质量实时数据，并保存</entry>
+            <entry key="processClass">com.cuit.mete.jobs.aqi.job.GetAQIDataFromWebProcess</entry>
+            <entry key="trigger">0 8/10 * * * ?</entry>
+            <entry key="cityobsurl">http://www.scnewair.cn:6112/publish/getAllCity24HRealTimeAQIC</entry>
+            <entry key="citydayrpturl">http://www.scnewair.cn:6112/publish/getAllCityDayAQIC</entry>
+            <entry key="statonobsurl">http://www.scnewair.cn:6112/publish/getAllStation24HRealTimeAQIC</entry>
+            <!-- 重复次数 -->
+            <entry key="repeat">2</entry>
+            <!-- 休眠毫秒数 -->
+            <entry key="sleep">10000</entry>9
+        </map>
+
+        <map id="CimissSurfEle001">
+            <entry key="datasetname">地面数据资料入库程序</entry>
+            <entry key="processClass">com.cuit.dp.jobs.SurfeleTcpDataProcess</entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SurfEle</entry>
+                </map>
+                <map id="out2">
+                    <string id="type">DB</string>
+                    <map id="DBConfig">
+                        <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                        <entry key="url">jdbc:mysql://192.168.0.61:3306/metedb?useUnicode=true&amp;characterEncoding=UTF-8
+                        </entry>
+                        <entry key="username">dpuser</entry>
+                        <entry key="password">Dp@123456</entry>
+
+                        <!--<entry key="driverClassName">com.mysql.cj.jdbc.Driver</entry>
+                        <entry key="url">jdbc:mysql://192.168.0.61:3306/metedb?serverTimezone=GMT%2B8&amp;&amp;useSSL=false&amp;characterEncoding=UTF-8</entry>
+                        <entry key="username">webuser</entry>
+                        <entry key="password">Web@123321</entry>-->
+
+                    </map>
+                </map>
+            </map>
+        </map>
+        <map id="CimissSEVP">
+            <entry key="datasetname">地面数据资料入库程序</entry>
+            <entry key="processClass">com.cuit.dp.jobs.SEVPTcpDataProcess</entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SEVP</entry>
+                </map>
+                <map id="out2">
+                    <string id="type">DB</string>
+                    <map id="DBConfig">
+                        <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                        <entry key="url">jdbc:mysql://192.168.0.61:3306/metedb?useUnicode=true&amp;characterEncoding=UTF-8
+                        </entry>
+                        <entry key="username">dpuser</entry>
+                        <entry key="password">Dp@123456</entry>
+
+                        <!--  <entry key="driverClassName">com.mysql.cj.jdbc.Driver</entry>
+                          <entry key="url">jdbc:mysql://192.168.0.61:3306/metedb?serverTimezone=GMT%2B8&amp;&amp;useSSL=false&amp;characterEncoding=UTF-8</entry>
+                          <entry key="username">webuser</entry>
+                          <entry key="password">Web@123321</entry>-->
+                    </map>
+                </map>
+            </map>
+        </map>
+        <map id="SURF_CAMPS_RT_001">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">实况融合产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/RT</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">RT</entry>
+                        <entry key="eleName">Total_precipitation_Ground_or_water_surface</entry>
+                        <entry key="geoServerStyles">R1</entry>
+                        <entry key="dataclass">实况融合</entry>
+                        <entry key="datatype">小时降水量</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+        <map id="SPCC_ER03">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_ER03</entry>
+
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPCC</entry>
+                        <entry key="eleName">Total_precipitation_(3_Hour_Accumulation)_Ground_or_water_surface</entry>
+                        <entry key="geoServerStyles">R1</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">3小时降水</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+
+                </map>
+            </map>
+        </map>
+
+        <map id="SPCC_PPH">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_PPH</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPCC_TMP">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_TMP</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPCC_TMAX">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_TMAX</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPCC</entry>
+                        <entry key="eleName">Maximum_temperature_(24_Hour_Maximum)_Specified_height_level_above_ground
+                        </entry>
+                        <entry key="geoServerStyles">TEM</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">24小时最高温度</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPCC_TMIN">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_TMIN</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPCC</entry>
+                        <entry key="eleName">Minimum_temperature_(24_Hour_Minimum)_Specified_height_level_above_ground
+                        </entry>
+                        <entry key="geoServerStyles">TEM</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">24小时最低温度</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPCC_EDA10">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPCC/SPCC_EDA10</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_TMP">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_TMP</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPHC</entry>
+                        <entry key="eleName">Temperature_(1_Hour_Average)_Specified_height_level_above_ground</entry>
+                        <entry key="geoServerStyles">TEM</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">逐小时温度</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_ER01">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_ER01</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPHC</entry>
+                        <entry key="eleName">Total_precipitation_(1_Hour_Accumulation)_Ground_or_water_surface</entry>
+                        <entry key="geoServerStyles">R1</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">逐小时降水</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_ERH">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_ERH</entry>
+                    <map id="GeoServer">
+                        <!-- RT表示 融合产品， SPCC、SPHC网格预报 -->
+                        <entry key="dataname">SPHC</entry>
+                        <entry key="eleName">Relative_humidity_(1_Hour_Average)_Specified_height_level_above_ground
+                        </entry>
+                        <entry key="geoServerStyles">ERH</entry>
+                        <entry key="dataclass">智能网格预报</entry>
+                        <entry key="datatype">逐小时相对湿度</entry>
+                        <map id="DBConfig">
+                            <entry key="driverClass">com.mysql.cj.jdbc.Driver</entry>
+                            <entry key="url">jdbc:mysql://192.168.0.61:3306/cuitgisdb?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+                            <entry key="username">dpuser</entry>
+                            <entry key="password">Dp@123456</entry>
+                        </map>
+                    </map>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_PRES">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_PRES</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_EDA10">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_EDA10</entry>
+                </map>
+            </map>
+        </map>
+
+        <map id="SPHC_ECT">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">格点预报产品</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/Cimiss/{Y4M}/SourceDate/SPHC/SPHC_ECT</entry>
+                </map>
+            </map>
+        </map>
+
+
+        <map id="HOR-TEM">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">1小时2m气温</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/HOR-TEM</entry>
+                </map>
+            </map>
+        </map>
+        <map id="HOR-RHU">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">1小时相对湿度</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/HOR-RHU</entry>
+                </map>
+            </map>
+        </map>
+        <map id="HOR-WIN">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">1小时10mUV风</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/HOR-WIN</entry>
+                </map>
+            </map>
+        </map>
+        <map id="DAY-MXT">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">日最高2m气温</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/DAY-MXT</entry>
+                </map>
+            </map>
+        </map>
+        <map id="DAY-MNT">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">日最低2m气温</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/DAY-MNT</entry>
+                </map>
+            </map>
+        </map>
+        <map id="DAY-MXWIN">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">日最大10mUV风</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/DAY-MXWIN</entry>
+                </map>
+            </map>
+        </map>
+        <map id="DAY-MXRHU">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">日最大相对湿度</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/DAY-MXRHU</entry>
+                </map>
+            </map>
+        </map>
+        <map id="DAY-MNRHU">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">日最小相对湿度</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/DAY-MNRHU</entry>
+                </map>
+            </map>
+        </map>
+        <map id="HOR-VIS">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">能见度</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/HOR-VIS</entry>
+                </map>
+            </map>
+        </map>
+        <map id="HOR-TCDC">
+            <!-- 关键字段，以此为匹配 -->
+            <entry key="datasetname">总云量</entry>
+            <!-- 为空时，表示不需要处理 -->
+            <entry key="processClass"></entry>
+            <map id="output">
+                <map id="out1">
+                    <string id="type">dir</string>
+                    <entry key="savePath">D:/NCDataDDP/CIMISS/{Y4M}/SourceDate/NAFP/HOR-TCDC</entry>
+                </map>
+            </map>
+        </map>
+    </map>
+</constants>
