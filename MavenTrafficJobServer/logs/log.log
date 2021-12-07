@@ -18,3 +18,105 @@
 2021-11-26 10:58:11 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！
 2021-11-26 10:59:34 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！
 2021-11-26 11:02:24 [ main:0 ]-[ ERROR ] OMI-Aura_L3-OMSO2e_2018m0105_v003-2020m1015t232304.he5文件的日期部分ura_L3-O转换出错！
+2021-12-02 11:18:54 [ main:0 ]-[ ERROR ] D:\ncFile\OMI\O3目录未找到需要处理的文件！
+2021-12-02 11:19:59 [ main:0 ]-[ ERROR ] D:\ncFile\OMI\O3目录未找到需要处理的文件！
+2021-12-02 11:21:13 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 11:25:00 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 11:25:05 [ main:5227 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-02 11:25:06 [ main:5769 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：3s
+2021-12-02 17:16:20 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:16:26 [ main:5779 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-02 17:16:26 [ main:6326 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：4s
+2021-12-02 17:23:47 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:23:51 [ main:4194 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-02 17:23:52 [ main:4808 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：3s
+2021-12-02 17:24:05 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:24:54 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:28:11 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:40:34 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:41:39 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:42:08 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:43:40 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:43:51 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-02 17:49:46 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 10:55:17 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 11:04:49 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 11:04:56 [ main:6845 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 11:04:57 [ main:7487 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：5s
+2021-12-07 11:15:47 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 11:18:03 [ main:135929 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 11:18:04 [ main:136825 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：20s
+2021-12-07 11:19:39 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 11:28:43 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 14:46:21 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:46:21 [ main:49 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:46:22 [ main:249 ]-[ DEBUG ]   made gbx9 index for D:/ncFile/ronghe/Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2 size=271%n
+2021-12-07 14:46:22 [ main:250 ]-[ DEBUG ]   Index written: D:/ncFile/ronghe/Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2.gbx9
+2021-12-07 14:46:22 [ main:304 ]-[ INFO ] Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2: createIndex D:\ncFile\ronghe\Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2.ncx
+2021-12-07 14:46:22 [ main:305 ]-[ DEBUG ] GribCollection Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2: makeAggregatedGroups
+2021-12-07 14:46:22 [ main:306 ]-[ DEBUG ]  dcm=thredds.inventory.CollectionManagerSingleFile@2ea41516
+2021-12-07 14:46:22 [ main:664 ]-[ DEBUG ]  Rectilyser2: nvars=1 records total=1 filtered=0 unique=1 dups=0 (0.000000)
+
+2021-12-07 14:46:22 [ main:664 ]-[ DEBUG ]  createIndex for D:\ncFile\ronghe\Z_SURF_C_BABJ_20211027171128_P_CMPA_NRT_BEHB_0P01_HOR-PRE-2021102617.GRB2.ncx
+2021-12-07 14:46:22 [ main:683 ]-[ DEBUG ]   write RecordMaps: bytes = 12 record = 1 bytesPerRecord=12
+2021-12-07 14:46:22 [ main:782 ]-[ DEBUG ]   write GribCollectionIndex= 358 bytes
+2021-12-07 14:46:22 [ main:782 ]-[ DEBUG ]   file size =  404 bytes
+2021-12-07 14:46:22 [ main:783 ]-[ DEBUG ] That took 478 msecs
+2021-12-07 14:46:24 [ main:2823 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 14:47:56 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:47:56 [ main:19 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:47:58 [ main:2335 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 14:48:31 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:48:31 [ main:19 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:49:44 [ main:72613 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 14:49:55 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:49:55 [ main:19 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:50:03 [ main:8837 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 14:52:51 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:52:51 [ main:18 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:53:58 [ main:66864 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 14:54:08 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 14:54:08 [ main:19 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 14:54:39 [ main:30829 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 15:36:26 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.grib.grib2.Grib2Iosp
+2021-12-07 15:36:27 [ main:60 ]-[ INFO ] DiskCache2 create directory C:/Users/wzw/.unidata/cache/
+2021-12-07 15:36:27 [ main:534 ]-[ ERROR ] 变量数组读取失败！
+2021-12-07 15:37:45 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 15:38:05 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 15:38:11 [ main:5899 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 15:38:11 [ main:6438 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：4s
+2021-12-07 16:22:58 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:28:06 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:28:12 [ main:5886 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 16:28:13 [ main:6529 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：4s
+2021-12-07 16:30:44 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:35:35 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:41:00 [ main:1 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:41:59 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:47:39 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 16:47:43 [ main:4170 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 16:47:44 [ main:4735 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：3s
+2021-12-07 17:05:57 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:06:03 [ main:6244 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 17:06:03 [ main:6819 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：4s
+2021-12-07 17:07:24 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:08:16 [ main:1 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:08:51 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:08:55 [ main:4610 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 17:08:56 [ main:5195 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：3s
+2021-12-07 17:11:29 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:12:08 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:16:11 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:20:52 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:21:15 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:27:18 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:28:24 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:32:54 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:32:56 [ main:1881 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 17:32:56 [ main:1896 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：0s
+2021-12-07 17:36:30 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:36:31 [ main:1737 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 17:36:31 [ main:1745 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：0s
+2021-12-07 17:37:15 [ main:0 ]-[ DEBUG ] Using IOSP ucar.nc2.iosp.hdf5.H5iosp
+2021-12-07 17:37:17 [ main:1915 ]-[ INFO ] 栅格文件生成成功，保存位置:d:\temp\outtemptif,文件名称：OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349_uvi.tif
+2021-12-07 17:37:17 [ main:1923 ]-[ INFO ] 读取并处理GRIB2：D:\ncFile\OMI\O3\OMI-Aura_L3-OMDOAO3e_2014m0101_v003-2014m0103t013349.he5，生成TIF文件, 耗时：0s
