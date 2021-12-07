@@ -16,10 +16,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class NcUtil {
+public class NcUtilTemis {
     private static final Logger logger = Logger.getLogger(com.cuit.job.utils.metegrib2.NcUtil.class);
 
-    public NcUtil() {
+    public NcUtilTemis() {
     }
 
     public static Map<String, List<GridPoint>> getNcData(String file, String paramName, String levels) {

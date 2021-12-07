@@ -128,9 +128,9 @@
         <entry key="temptifpath">d:\temp\outtemptif</entry>
         <entry key="trigger">0 31 */1 * * ?</entry>
         <list id="Files">
-            <!--            <entry>RTPRE</entry>-->
-            <entry>UVI_INDEX</entry>
 
+            <!--<entry>UVI_INDEX</entry>-->
+            <entry>OMI_O3</entry>
             <!--
              <entry>RTPRE</entry>
              <entry>SPHC_ER01</entry>
@@ -165,8 +165,27 @@
             <map id="gridsets">
             </map>
         </map>
+
+        <map id="OMI_O3">
+            <entry key="path">D:\ncFile\OMI\O3</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.he]]>
+            </entry>
+            <entry key="Datatype">臭氧</entry>
+            <entry key="times">0</entry>
+            <entry key="element">Ozone vertical column density</entry>
+            <entry key="elementname">臭氧柱浓度</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">5</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="gridsets">
+            </map>
+        </map>
+
+
         <map id="RTPRE">
-            <entry key="path">D:\ncFile\</entry>
+            <entry key="path">D:\ncFile\ronghe</entry>
             <entry key="fileNamePattern">
                 <![CDATA[.GRB2$]]>
             </entry>
