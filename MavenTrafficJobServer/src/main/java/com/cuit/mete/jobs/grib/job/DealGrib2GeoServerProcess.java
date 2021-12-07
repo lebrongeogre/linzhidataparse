@@ -5,6 +5,7 @@ import com.cuit.job.utils.*;
 import com.cuit.job.utils.metegrib2.DataGrid;
 import com.cuit.job.utils.metegrib2.GridPoint;
 
+import com.cuit.job.utils.metegrib2.NcUtil;
 import com.cuit.mete.BaseObjects.LicenseEngine;
 import com.cuit.mete.DataSources.*;
 import com.cuit.mete.Geometry.CoordinateTransformation;
@@ -12,11 +13,11 @@ import com.cuit.mete.Geometry.Envelope;
 import com.cuit.mete.Geometry.Point;
 import com.cuit.mete.Geometry.SpatialReference;
 
-import com.cuit.mete.jobs.grib.job.util.NcUtil;
+
+import com.cuit.mete.jobs.grib.job.util.NcUtilOMI;
 import com.cuit.mete.jobs.grib.job.vo.NcBasicMeta;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.jsoup.helper.DataUtil;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
@@ -45,11 +46,10 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         }
 
 
-
         //获取开始时间
         long startTime = 0L;
         //获取结束时间
-        long endTime =0L;
+        long endTime = 0L;
 
 
         Calendar cal = Calendar.getInstance();
@@ -73,15 +73,15 @@ public class DealGrib2GeoServerProcess extends BaseJob {
                 String fileFlag = fileFlist.get(i);
                 Map<String, Object> dealFileConfig = (Map<String, Object>) config.get(fileFlag);
                 if (dealFileConfig != null) {
-                    String filePath = (String)dealFileConfig.get("path");
-                    String fileNamePattern = (String)dealFileConfig.get("fileNamePattern");
-                    String times = (String)dealFileConfig.get("times");
-                    String element = (String)dealFileConfig.get("element");
-                    String datepos = (String)dealFileConfig.get("datepos");
-                    String elementname = (String)dealFileConfig.get("elementname");
-                    String Datatype = (String)dealFileConfig.get("Datatype");
+                    String filePath = (String) dealFileConfig.get("path");
+                    String fileNamePattern = (String) dealFileConfig.get("fileNamePattern");
+                    String times = (String) dealFileConfig.get("times");
+                    String element = (String) dealFileConfig.get("element");
+                    String datepos = (String) dealFileConfig.get("datepos");
+                    String elementname = (String) dealFileConfig.get("elementname");
+                    String Datatype = (String) dealFileConfig.get("Datatype");
 
-                    String Range = (String)dealFileConfig.get("Range");
+                    String Range = (String) dealFileConfig.get("Range");
                     if (StringUtils.isEmpty(Range)) {
                         Range = "LAST";
                     }
@@ -104,7 +104,7 @@ public class DealGrib2GeoServerProcess extends BaseJob {
                             File fileMax = allFiles[0];
                             String sd1 = fileMax.getName().substring(idatepos, idatepos + 10);
                             //YYYYMMDDHH
-                            Date dataDateMax = DateUtil.parseDateTimeSecond(sd1+"0000");
+                            Date dataDateMax = DateUtil.parseDateTimeSecond(sd1 + "0000");
                             Calendar calDataMax = null;
                             if (dataDateMax != null) {
                                 calDataMax = Calendar.getInstance();
@@ -132,87 +132,90 @@ public class DealGrib2GeoServerProcess extends BaseJob {
 
 
                         for (int j = 0; j < dealllFiles.length; j++) {
-                                File file = allFiles[j];
+                            File file = allFiles[j];
 
-                                String sd = file.getName().substring(idatepos, idatepos + 8);
-                                //YYYYMMDDHH
-                                Date dataDate = DateUtil.parseDateTimeSecond(sd + "000000");
-                                if (dataDate != null) {
-                                    Calendar calData = Calendar.getInstance();
-                                    calData.setTime(dataDate);
-                                    //获取年份
-                                    int year = calData.get(Calendar.YEAR);
+                            String sd = file.getName().substring(idatepos, idatepos + 8);
+                            //YYYYMMDDHH
+                            //Date dataDate = DateUtil.parseDateTimeSecond(sd + "000000");
+                            Date dataDate = new Date();
+                            if (dataDate != null) {
+                                Calendar calData = Calendar.getInstance();
+                                calData.setTime(dataDate);
+                                //获取年份
+                                int year = calData.get(Calendar.YEAR);
 
-                                    //没有处理过的数据
-                                    if (!fileSendRecord.findSendFile(fileFlag, year, file.getName())) {
-                                        //表示有数据
-                                        //先读元数据
-                                        NcBasicMeta ncBasicMeta = NcUtil.getSPHDNcDataMetaData(file.getAbsolutePath(), element);
-                                        DataGrid dataGrid = ncBasicMeta.getDataGrid();
+                                //没有处理过的数据
+                                if (!fileSendRecord.findSendFile(fileFlag, year, file.getName())) {
+                                    //表示有数据
+                                    //先读元数据
+                                    NcBasicMeta ncBasicMeta = NcUtilOMI.getSPHDNcDataMetaData(file.getAbsolutePath(), element);
+                                    //NcBasicMeta ncBasicMeta = NcUtilTemis.getSPHDNcDataMetaData(file.getAbsolutePath(), element);
+
+                                    DataGrid dataGrid = ncBasicMeta.getDataGrid();
+                                    if (dataGrid != null) {
+                                        //处理该文件
+
                                         if (dataGrid != null) {
-                                            //处理该文件
-
-                                            if (dataGrid != null) {
-                                                    List<GridPoint> data = ncBasicMeta.getGridPoints();
-                                                    boolean flag = true;
-                                                    float[] dataFloat = new float[dataGrid.getRows() * dataGrid.getCols()];
-                                                    int pos = 0;
-                                                    for (int r = dataGrid.getRows() - 1; r >= 0; r--) {
-                                                        for (int c = 0; c < dataGrid.getCols(); c++) {
-                                                            int p = r * dataGrid.getCols() + c;
-                                                            if (p >= data.size()) {
-                                                                logger.error(file.getAbsolutePath() + "取的数据个数不正确！");
-                                                                flag = false;
-                                                                break;
-                                                            }
-                                                            dataFloat[pos] = (float) data.get(p).value;
-                                                            pos++;
-                                                        }
-                                                        if (!flag) {
-                                                            break;
-                                                        }
+                                            List<GridPoint> data = ncBasicMeta.getGridPoints();
+                                            boolean flag = true;
+                                            float[] dataFloat = new float[dataGrid.getRows() * dataGrid.getCols()];
+                                            int pos = 0;
+                                            for (int r = dataGrid.getRows() - 1; r >= 0; r--) {
+                                                for (int c = 0; c < dataGrid.getCols(); c++) {
+                                                    int p = r * dataGrid.getCols() + c;
+                                                    if (p >= data.size()) {
+                                                        logger.error(file.getAbsolutePath() + "取的数据个数不正确！");
+                                                        flag = false;
+                                                        break;
                                                     }
-                                                    if (flag) {
-
-                                                        //生成文件
-                                                        String tempath = temptifpath;
-                                                        String layername = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi";
-                                                        String outtiffile = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi" + ".tif";
-                                                        //获取开始时间
-                                                        startTime = System.currentTimeMillis();
-                                                        transArrar2Tif(dataFloat, new Point(dataGrid.getLon1(), dataGrid.getLat2()), dataGrid.getxCellSize(), dataGrid.getyCellSize(), dataGrid.getCols(), dataGrid.getRows(), tempath, outtiffile);
-                                                        //获取结束时间
-                                                        endTime = System.currentTimeMillis();
-                                                        logger.info("读取并处理GRIB2：" + file.getAbsolutePath() + "，生成TIF文件, 耗时：" + ((endTime - startTime) / 1000 + "s"));
-                                                    }
-
-                                                //所有数据都处理了后，该文件不在处理
-                                                if (retFlag) {
-                                                    fileSendRecord.addFile(fileFlag, year, file.getName());
+                                                    dataFloat[pos] = (float) data.get(p).value;
+                                                    pos++;
                                                 }
-                                            } else {
-                                                logger.error(file.getName() + "读数据结果长度不正确！有些时次未读出！");
-                                                retFlag = false;
+                                                if (!flag) {
+                                                    break;
+                                                }
                                             }
+                                            if (flag) {
+
+                                                //生成文件
+                                                String tempath = temptifpath;
+                                                String layername = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi";
+                                                 String outtiffile = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi" + ".tif";
+                                                //获取开始时间
+                                                startTime = System.currentTimeMillis();
+                                                transArrar2Tif(dataFloat, new Point(dataGrid.getLon1(), dataGrid.getLat2()), dataGrid.getxCellSize(), dataGrid.getyCellSize(), dataGrid.getCols()  , dataGrid.getRows()  , tempath, outtiffile);
+
+                                                //获取结束时间
+                                                endTime = System.currentTimeMillis();
+                                                logger.info("读取并处理GRIB2：" + file.getAbsolutePath() + "，生成TIF文件, 耗时：" + ((endTime - startTime) / 1000 + "s"));
+                                            }
+
+                                            //所有数据都处理了后，该文件不在处理
+                                            if (retFlag) {
+                                                fileSendRecord.addFile(fileFlag, year, file.getName());
+                                            }
+                                        } else {
+                                            logger.error(file.getName() + "读数据结果长度不正确！有些时次未读出！");
+                                            retFlag = false;
                                         }
                                     }
-                                } else {
-                                    logger.error(file.getName() + "文件的日期部分" + sd + "转换出错！");
-                                    retFlag = false;
                                 }
+                            } else {
+                                logger.error(file.getName() + "文件的日期部分" + sd + "转换出错！");
+                                retFlag = false;
                             }
+                        }
                     } else {
-                        logger.error(filePath+"目录未找到需要处理的文件！");
+                        logger.error(filePath + "目录未找到需要处理的文件！");
                         retFlag = false;
                     }
                 } else {
-                    logger.error(fileFlag+"配置未找到！");
+                    logger.error(fileFlag + "配置未找到！");
                     retFlag = false;
                 }
             }
         }
     }
-
 
 
     public void transArrar2Tif(float[] data, Point leftTop, double xCellSize, double yCellSize, int cols, int rows, String path, String tifFileName) {
@@ -224,23 +227,23 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         MemRasterWorkspaceFactory pFac = new MemRasterWorkspaceFactory();
 
         MemRasterWorkspace work = pFac.CreateWorkspace();
-        MemRasterDataset newdataset = work.CreateRasterDataset(tifFileName, leftTop, xCellSize, yCellSize, cols, rows, 1, RasterDataType.rdtFloat32, 0, psp);
+        MemRasterDataset newdataset = work.CreateRasterDataset(tifFileName, leftTop, xCellSize, yCellSize, cols , rows , 1, RasterDataType.rdtFloat32, 0, psp);
         RasterBand newband = newdataset.getRasterBand(0);
-        newband.SaveBlockData(0, 0, cols, rows, data);
-        SpatialReference pspto = new SpatialReference("EPSG:3857");
+        newband.SaveBlockData(0, 0, cols , rows , data);
+        SpatialReference pspto = new SpatialReference("EPSG:4326");
 
         Envelope env = newdataset.getExtent();
         CoordinateTransformation pTrans = new CoordinateTransformation(psp, pspto);
         pTrans.BeginTransform();
         env.Project(pTrans);
 
-        double cellSize = 10000;
+        double cellSize = 0.25;
         double right = env.getRight();
         double left = env.getLeft();
         double top = env.getTop();
         double bottom = env.getBottom();
-        int cols2 = (int) ((right-left) / cellSize);
-        int rows2 = (int) ((top-bottom) / cellSize);
+        int cols2 = (int) ((right - left) / cellSize);
+        int rows2 = (int) ((top - bottom) / cellSize);
         float[] data2 = new float[cols2 * rows2];
         Point leftTop2 = new Point(env.getLeft(), env.getTop());
         newband.GetBlockDataByCoord(leftTop2, cellSize, cols2, rows2, data2, pspto, -32768, true);
@@ -261,7 +264,7 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         LicenseEngine licenseEngine = new LicenseEngine();
         licenseEngine.StartUsing();
 
-        SpatialReference psp = new SpatialReference("EPSG:4610");
+        SpatialReference psp = new SpatialReference("EPSG:4326");
         MemRasterWorkspaceFactory pFac = new MemRasterWorkspaceFactory();
 
         MemRasterWorkspace work = pFac.CreateWorkspace();
@@ -280,8 +283,8 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         double left = env.getLeft();
         double top = env.getTop();
         double bottom = env.getBottom();
-        int cols2 = (int) ((right-left) / cellSize);
-        int rows2 = (int) ((top-bottom) / cellSize);
+        int cols2 = (int) ((right - left) / cellSize);
+        int rows2 = (int) ((top - bottom) / cellSize);
         float[] data2 = new float[cols2 * rows2];
         Point leftTop2 = new Point(env.getLeft(), env.getTop());
         newband.GetBlockDataByCoord(leftTop2, cellSize, cols2, rows2, data2, pspto, -32768, true);
