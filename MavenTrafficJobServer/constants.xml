@@ -131,7 +131,8 @@
 
             <!--<entry>UVI_INDEX</entry>-->
             <!--<entry>OMI_O3</entry>-->
-            <entry>UVI_INDEX_DOSE_YEAR</entry>
+            <entry>UVI_INDEX_YEAR</entry>
+            <!--<entry>UVI_INDEX_DOSE_YEAR</entry>-->
             <!--
              <entry>RTPRE</entry>
              <entry>SPHC_ER01</entry>
@@ -144,7 +145,7 @@
         </list>
 
         <map id="UVI_INDEX_YEAR">
-            <entry key="path">D:\ncFile\uviindex</entry>
+            <entry key="path">D:\ncFile\temis</entry>
             <entry key="fileNamePattern">
                 <![CDATA[.nc]]>
             </entry>
