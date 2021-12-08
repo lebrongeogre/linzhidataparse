@@ -130,7 +130,8 @@
         <list id="Files">
 
             <!--<entry>UVI_INDEX</entry>-->
-            <entry>OMI_O3</entry>
+            <!--<entry>OMI_O3</entry>-->
+            <entry>UVI_INDEX_DOSE_YEAR</entry>
             <!--
              <entry>RTPRE</entry>
              <entry>SPHC_ER01</entry>
@@ -141,6 +142,58 @@
              <entry>SPHC_TMP</entry>
              -->
         </list>
+
+        <map id="UVI_INDEX_YEAR">
+            <entry key="path">D:\ncFile\uviindex</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品</entry>
+            <entry key="times"></entry>
+            <entry key="element">Erythemal UV index (cloud-free) at local solar noon</entry>
+            <entry key="elementname">uvi年度指数产品</entry>
+            <entry key="temptifpath">D:\temp\uviindex</entry>
+            temptifpath
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">6</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+
+        <map id="UVI_INDEX_DOSE_YEAR">
+            <entry key="path">D:\ncFile\uviindex</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度产品</entry>
+            <entry key="times"></entry>
+            <entry key="element">Erythemal UV dose cloud-free</entry>
+            <entry key="elementname">uvi年度产品</entry>
+            <entry key="temptifpath">D:\temp\uviindex</entry>
+            temptifpath
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">6</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
 
         <map id="UVI_INDEX">
             <entry key="path">D:\ncFile\uviindex</entry>

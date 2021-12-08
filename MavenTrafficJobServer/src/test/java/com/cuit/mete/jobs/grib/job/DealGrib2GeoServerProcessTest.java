@@ -1,9 +1,11 @@
 package com.cuit.mete.jobs.grib.job;
 
+import com.cuit.mete.jobs.grib.temisjob.DealGribTemisGeoServerProcess;
+import com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcess;
 import org.junit.Test;
 import org.quartz.JobExecutionException;
 
-import static org.junit.Assert.*;
+
 
 public class DealGrib2GeoServerProcessTest {
 
@@ -24,4 +26,15 @@ public class DealGrib2GeoServerProcessTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testStartTemisJob() {
+        try {
+            new DealGribTemisGeoServerProcess().startJob(null);
+        } catch (JobExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

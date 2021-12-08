@@ -223,7 +223,7 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         LicenseEngine licenseEngine = new LicenseEngine();
         licenseEngine.StartUsing();
 
-        SpatialReference psp = new SpatialReference("EPSG:4610");
+        SpatialReference psp = new SpatialReference("EPSG:4326");
         MemRasterWorkspaceFactory pFac = new MemRasterWorkspaceFactory();
 
         MemRasterWorkspace work = pFac.CreateWorkspace();
