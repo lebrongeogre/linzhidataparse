@@ -2,19 +2,143 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ae0c388-bb6e-4f7f-b1d7-2320e4702782" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/ClipRasterProcess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/utils/MyDateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.xml" beforeDir="false" afterPath="$PROJECT_DIR$/constants.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sendLog/OMI_O32021.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sendLog/UVI_INDEX_DOSE_YEAR2021.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sendLog/UVI_INDEX_YEAR2021.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/BaseMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/BaseMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/util/NcUtilOMI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/util/NcUtilOMI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/BaseMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/BaseMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/util/NcUtilOMI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cuit/mete/jobs/grib/job/util/NcUtilOMI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/controller/ExcelReadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/controller/ExcelReadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/job/ReadRadiationExcelProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/job/excel/ReadRadiationExcelProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/utils/CalculatorUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/src/main/java/com/cuit/linzhi/utils/CalculatorUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/src/test/java/com/cuit/linzhi/job/ReadRadiationExcelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/src/test/java/com/cuit/linzhi/job/ReadRadiationExcelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../linzhiuv/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/Starter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/base/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/base/BaseMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/base/BaseQuery.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/base/BaseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/base/ResultInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/config/RadiationExcelReadConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/config/StatisticsConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/config/TransTablesConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/AstronomicalIrradianceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/ExcelReadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/RadiationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/TrueMeanTimeDifferenceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/UVIParsedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/UVIStatisticsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/controller/UVPercentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/AerfaStatisticsBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/AstronomicalIrradianceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/AstronomicalIrradianceParsedBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/MaxIdBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/RadiationBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/RadiationMonthBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsAllRadiationBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsMonthAccumulationBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsUVIBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsUVIMeanBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsUVIMonthValueBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsUVIParsedBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/StatisticsYiTaBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/TrueMeanTimeDifferenceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/TrueSolarTimeBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/UVParsedBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/dao/UVPercentBodyMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/job/ReadRadiationExcelProcess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/AccumulationTableTransfer$UVITableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/AccumulationTableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/AerfaCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/CalculateAstronomicalIrradiance.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/CalculateTrueSolarTime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/Calculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/ITableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/ParseExcelData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/TableTransferProcess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/UVITableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/imp/AccumulationTableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/imp/UVIMonthAccumulationTableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/parse/imp/UVUVIAccumulationTableTransfer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/AccumulationParsedService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/AstronomicalIrradianceParsedService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/AstronomicalIrradianceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/RadiationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/TrueMeanTimeDifferenceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/UVIMonthValueService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/UVIStatisticsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/UVParsedService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/UVPercentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/UVUVIAccumulationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/AccumulationParsedServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/AstronomicalIrradianceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/RadiationServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/TrueMeanTimeDifferenceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVIMonthStatisticsServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVIMonthValueServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVIStatisticsServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVIYearStatisticsServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVParsedServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVPercentServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/service/imp/UVUVIAccumulationServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/utils/CalculatorUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/utils/ExcelReadUtil$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/utils/ExcelReadUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/utils/FormatUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/utils/StringUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/AerfaStatisticsBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/AstronomicalIrradianceBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/AstronomicalIrradianceParsedBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/MaxIdBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/RadiationBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/RadiationMonthBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsAllRadiationBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsMonthAccumulationBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsUVIBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsUVIMeanBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsUVIMonthValueBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsUVIParsedBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/StatisticsYiTaBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/TrueMeanTimeDifferenceBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/TrueSolarTimeBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/UVParsedBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/classes/com/cuit/linzhi/vo/UVPercentBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linzhiuv/target/test-classes/com/cuit/linzhi/job/ReadRadiationExcelTest.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="MavenTrafficJobServer" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -26,6 +150,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="Rerun Failed Tests" />
+    </enabled-run-configurations>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -60,7 +189,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib" />
+    <property name="last_opened_file_path" value="E:/study/MyStudyProject/MyStudyProject/hou-poi" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -68,7 +197,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -120,8 +249,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DealGrib2GeoServerProcessTest.testStartTemisJob">
-    <configuration name="DealGrib2GeoServerProcessTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DealGrib2GeoServerProcessTest.testStartJob">
+    <configuration name="DealGrib2GeoServerProcessTest.testReadRaster" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JtDataDealJob" />
       <extension name="coverage">
         <pattern>
@@ -131,29 +260,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.cuit.mete.jobs.grib.job" />
       <option name="MAIN_CLASS_NAME" value="com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcessTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DealGrib2GeoServerProcessTest.startJob" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JtDataDealJob" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cuit.mete.jobs.grib.job.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cuit.mete.jobs.grib.job" />
-      <option name="MAIN_CLASS_NAME" value="com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcessTest" />
-      <option name="METHOD_NAME" value="startJob" />
+      <option name="METHOD_NAME" value="testReadRaster" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="DealGrib2GeoServerProcessTest.testStartJob" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MavenTrafficJobServer" />
+      <module name="JtDataDealJob" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.cuit.mete.jobs.grib.job.*" />
@@ -164,6 +278,40 @@
       <option name="MAIN_CLASS_NAME" value="com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcessTest" />
       <option name="METHOD_NAME" value="testStartJob" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DealGrib2GeoServerProcessTest.testStartTemisClipJob (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JtDataDealJob" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cuit.mete.jobs.grib.job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cuit.mete.jobs.grib.job" />
+      <option name="MAIN_CLASS_NAME" value="com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcessTest" />
+      <option name="METHOD_NAME" value="testStartTemisClipJob" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DealGrib2GeoServerProcessTest.testStartTemisClipJob" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JtDataDealJob" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cuit.mete.jobs.grib.job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cuit.mete.jobs.grib.job" />
+      <option name="MAIN_CLASS_NAME" value="com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcessTest" />
+      <option name="METHOD_NAME" value="testStartTemisClipJob" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-Xms128m -Xmx1024m -XX:MaxPermSize=512m" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -211,18 +359,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.startJob" />
-      <item itemvalue="JUnit.DealGrib2GeoServerProcessTest" />
+      <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisClipJob" />
+      <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testReadRaster" />
+      <item itemvalue="Maven.JtDataDealJob [clean,assembly:assembly]" />
+      <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisClipJob (1)" />
       <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartJob" />
       <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisJob" />
-      <item itemvalue="Maven.JtDataDealJob [clean,assembly:assembly]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisJob" />
-        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.startJob" />
-        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest" />
         <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartJob" />
+        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisJob" />
+        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisClipJob (1)" />
+        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testStartTemisClipJob" />
+        <item itemvalue="JUnit.DealGrib2GeoServerProcessTest.testReadRaster" />
       </list>
     </recent_temporary>
   </component>
@@ -264,7 +414,8 @@
       <workItem from="1638150808223" duration="844000" />
       <workItem from="1638408423277" duration="8777000" />
       <workItem from="1638683892038" duration="62692000" />
-      <workItem from="1638927392935" duration="14335000" />
+      <workItem from="1638927392935" duration="31694000" />
+      <workItem from="1639451564748" duration="14517000" />
     </task>
     <task id="LOCAL-00001">
       <created>1632723563478</created>
@@ -478,53 +629,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.java</url>
-          <line>14</line>
+          <line>18</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
-          <line>269</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/src/test/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
-          <line>185</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
-          <line>254</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
-          <line>232</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
-          <line>237</line>
-          <option name="timeStamp" value="56" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/ClipRasterProcess.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcessTest.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/DealGribTemisGeoServerProcess.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="58" />
+          <line>66</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/GribGeoserverPublisher.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="61" />
+          <line>205</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
+          <line>246</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/temisjob/GribGeoserverPublisher.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="63" />
+          <line>292</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cuit/mete/jobs/grib/job/DealGrib2GeoServerProcess.java</url>
+          <line>186</line>
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -536,6 +677,9 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MavenTrafficJobServer$DealGrib2GeoServerProcessTest_testStartTemisClipJob.ic" NAME="DealGrib2GeoServerProcessTest.testStartTemisClipJob Coverage Results" MODIFIED="1639448429524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.cuit.mete.jobs.grib.job.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/MavenTrafficJobServer$DealGrib2GeoServerProcessTest_startJob.ic" NAME="DealGrib2GeoServerProcessTest.startJob Coverage Results" MODIFIED="1637570829104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.cuit.mete.jobs.grib.job.*</FILTER>
     </SUITE>

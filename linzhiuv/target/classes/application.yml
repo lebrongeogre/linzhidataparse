@@ -4,7 +4,6 @@ server:
   servlet:
     context-path: /linzhi
 
-
 ## 数据源配置
 spring:
   datasource:
@@ -27,7 +26,6 @@ spring:
       enabled: true
       additional-paths: src/main/java
 
-
   data:
     months:## mybatis 配置
 mybatis:
@@ -47,14 +45,12 @@ logging:
       cuit:
         linzhi: debug
 ## 月均值统计service配置
-
 spring.data.years:
   - 2017
   - 2018
   - 2019
   - 2020
   - 2021
-
 spring.data.months:
   - 1
   - 2
@@ -68,7 +64,6 @@ spring.data.months:
   - 10
   - 11
   - 12
-
 spring.data.stations:
   - 林芝
   - 拉萨
@@ -77,10 +72,8 @@ spring.data.stations:
 #  - 那曲
 #  - 日喀则
 #  - 山南
-
 spring.data.longitude:
   "[林芝]": 94度21分37.38秒
-
 
 spring.excel.filePath:
   - D:\monkey\紫外数据\拉萨55591\R文件1993-2020
@@ -99,8 +92,8 @@ spring.excel.configMap:
       "[R55299]": 那曲
       "[R55578]": 日喀则
   rowColMap:
-      "[startRow]": 6
-      "[startCol]": 13
-      "[endCol]": 26
+      "[startRow]":6
+      "[startCol]":13
+      "[endCol]":26
 
 

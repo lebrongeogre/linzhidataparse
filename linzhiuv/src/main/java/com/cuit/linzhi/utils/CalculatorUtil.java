@@ -1,9 +1,15 @@
 package com.cuit.linzhi.utils;
 
+import com.cuit.linzhi.utils.pattern.BasicUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculatorUtil {
+public class CalculatorUtil extends BasicUtils {
+
+    public CalculatorUtil(){
+          utilFunction = new MeanCalculator();
+    }
 
     //计算传入集合的均值
     public static Double calMeanForStrList(List<String> dataList) {
