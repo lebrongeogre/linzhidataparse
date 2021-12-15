@@ -460,95 +460,102 @@ public class BaseMethod {
      * @param saveTo 保存路径
      * @param saveName 保存名称
      */
-    public void clipRaster(String clipsource, String rasterPath,String saveTo,String saveName) {
-        //读栅格
-        RasterBand rasterBand = readRaster(rasterPath);
-        //获取像元大小
-        double xCellSize = rasterBand.getXCellSize();
-        //读边界图层
-        logger.info("读取矢量数据,路径为" + clipsource);
-        ShapefileFeatureClass pfc = new ShapefileFeatureClass();
-        double nodata1 = rasterBand.getNoData();
-        pfc.OpenFromFile(clipsource);
-        SAEnvironment envi = SAEnvironment.CreateFromFeatureClass(pfc, xCellSize);
-        //把矢量图层转成栅格
-        FeatureToRaster ftr = new FeatureToRaster();
-        ftr.setEnvironment(envi);
-        MemRasterTarget target = new MemRasterTarget();
-        RasterBand band1 = ftr.Convert(pfc, "FID", target, -32768);
+    public int clipRaster(String clipsource, String rasterPath,String saveTo,String saveName) {
+        try{
+            //读栅格
+            RasterBand rasterBand = readRaster(rasterPath);
+            //获取像元大小
+            double xCellSize = rasterBand.getXCellSize();
+            //读边界图层
+            logger.info("读取矢量数据,路径为" + clipsource);
+            ShapefileFeatureClass pfc = new ShapefileFeatureClass();
+            double nodata1 = rasterBand.getNoData();
+            pfc.OpenFromFile(clipsource);
+            SAEnvironment envi = SAEnvironment.CreateFromFeatureClass(pfc, xCellSize);
+            //把矢量图层转成栅格
+            FeatureToRaster ftr = new FeatureToRaster();
+            ftr.setEnvironment(envi);
+            MemRasterTarget target = new MemRasterTarget();
+          //  RasterBand band1 = ftr.Convert(pfc, "FID", target, -32768);
 
-        //获取裁剪边界范围
-        Envelope env1 = band1.getExtent();
-        double right1 = env1.getRight();
-        double left1 = env1.getLeft();
-        double top1 = env1.getTop();
-        double bottom1 = env1.getBottom();
-        //栅格数据边界范围
-        Envelope env = rasterBand.getExtent();
-        double left = env.getLeft();
-        double top = env.getTop();
-        double bottom = env.getBottom();
-        double right = env.getRight();
+            RasterBand band1 = readRaster(clipsource);
+            //获取裁剪边界范围
+            Envelope env1 = band1.getExtent();
+            double right1 = env1.getRight();
+            double left1 = env1.getLeft();
+            double top1 = env1.getTop();
+            double bottom1 = env1.getBottom();
+            //栅格数据边界范围
+            Envelope env = rasterBand.getExtent();
+            double left = env.getLeft();
+            double top = env.getTop();
+            double bottom = env.getBottom();
+            double right = env.getRight();
 
-        //裁剪算法
-        double clipright;
-        double clipleft;
-        double cliptop;
-        double clipbottom;
-        if (right > right1) {
-            clipright = right1;
-        } else {
-            clipright = right;
-        }
-        if (left < left1) {
-            clipleft = left1;
-        } else {
-            clipleft = left;
-        }
-        if (top > top1) {
-            cliptop = top1;
-        } else {
-            cliptop = top;
-        }
-        if (bottom < bottom1) {
-            clipbottom = bottom1;
-        } else {
-            clipbottom = bottom;
-        }
-        logger.info("开始裁剪... ...");
-        Point leftTop = new Point(clipleft, cliptop);
-        int cols = (int) ((clipright - clipleft) / xCellSize);
-        int rows = (int) ((cliptop - clipbottom) / xCellSize);
-        logger.info("cellSize1:" + xCellSize + "   clipright-clipleft:" + (clipright - clipleft) + "   cliptop-clipbottom:" + (cliptop - clipbottom));
-        float[] data = new float[cols];
-        float[] data1 = new float[cols];
-        GeneralRasterWorkspaceFactory pFac = new GeneralRasterWorkspaceFactory();
-        GeneralRasterWorkspace work = pFac.OpenWorkspace(saveTo);
-        GeneralRasterDataset newdataset = work.CreateRasterDatasetEx(saveName, band1, 1, RasterDataType.rdtFloat32, RasterCreateFileType.rcftTiff, -32768);
-        RasterBand newband = newdataset.getRasterBand(0);
-        for (int i = 0; i < rows; i++) {
-            if (top1 >= top && left1 <= left) {
-                rasterBand.GetBlockData(0, i, cols, 1, cols, 1, data);
-                band1.GetBlockData((int) ((left - left1) / xCellSize), (int) ((top1 - top) / xCellSize) + i, cols, 1, cols, 1, data1);
-            } else if (top1 >= top && left1 >= left) {
-                rasterBand.GetBlockData((int) ((left1 - left) / xCellSize), i, cols, 1, cols, 1, data);
-                band1.GetBlockData(0, (int) ((top1 - top) / xCellSize) + i, cols, 1, cols, 1, data1);
-            } else if (top1 <= top && left1 <= left) {
-                rasterBand.GetBlockData(0, (int) ((top - top1) / xCellSize) + i, cols, 1, cols, 1, data);
-                band1.GetBlockData((int) ((left - left1) / xCellSize), i, cols, 1, cols, 1, data1);
-            } else if (top1 <= top && left1 >= left) {
-                rasterBand.GetBlockData((int) ((left1 - left) / xCellSize), (int) ((top - top1) / xCellSize) + i, cols, 1, cols, 1, data);
-                band1.GetBlockData(0, i, cols, 1, cols, 1, data1);
+            //裁剪算法
+            double clipright;
+            double clipleft;
+            double cliptop;
+            double clipbottom;
+            if (right > right1) {
+                clipright = right1;
+            } else {
+                clipright = right;
             }
-            for (int j = 0; j < cols; j++) {
-                if (data1[j] == nodata1)
-                    data[j] = (float) nodata1;
+            if (left < left1) {
+                clipleft = left1;
+            } else {
+                clipleft = left;
             }
-            newband.SaveBlockData(0, i, cols, 1, data);
+            if (top > top1) {
+                cliptop = top1;
+            } else {
+                cliptop = top;
+            }
+            if (bottom < bottom1) {
+                clipbottom = bottom1;
+            } else {
+                clipbottom = bottom;
+            }
+            logger.info("开始裁剪... ...");
+            Point leftTop = new Point(clipleft, cliptop);
+            int cols = (int) ((clipright - clipleft) / xCellSize);
+            int rows = (int) ((cliptop - clipbottom) / xCellSize);
+            logger.info("cellSize1:" + xCellSize + "   clipright-clipleft:" + (clipright - clipleft) + "   cliptop-clipbottom:" + (cliptop - clipbottom));
+            float[] data = new float[cols];
+            float[] data1 = new float[cols];
+            GeneralRasterWorkspaceFactory pFac = new GeneralRasterWorkspaceFactory();
+            GeneralRasterWorkspace work = pFac.OpenWorkspace(saveTo);
+            GeneralRasterDataset newdataset = work.CreateRasterDatasetEx(saveName, band1, 1, RasterDataType.rdtFloat32, RasterCreateFileType.rcftTiff, -32768);
+            RasterBand newband = newdataset.getRasterBand(0);
+            for (int i = 0; i < rows; i++) {
+                if (top1 >= top && left1 <= left) {
+                    rasterBand.GetBlockData(0, i, cols, 1, cols, 1, data);
+                    band1.GetBlockData((int) ((left - left1) / xCellSize), (int) ((top1 - top) / xCellSize) + i, cols, 1, cols, 1, data1);
+                } else if (top1 >= top && left1 >= left) {
+                    rasterBand.GetBlockData((int) ((left1 - left) / xCellSize), i, cols, 1, cols, 1, data);
+                    band1.GetBlockData(0, (int) ((top1 - top) / xCellSize) + i, cols, 1, cols, 1, data1);
+                } else if (top1 <= top && left1 <= left) {
+                    rasterBand.GetBlockData(0, (int) ((top - top1) / xCellSize) + i, cols, 1, cols, 1, data);
+                    band1.GetBlockData((int) ((left - left1) / xCellSize), i, cols, 1, cols, 1, data1);
+                } else if (top1 <= top && left1 >= left) {
+                    rasterBand.GetBlockData((int) ((left1 - left) / xCellSize), (int) ((top - top1) / xCellSize) + i, cols, 1, cols, 1, data);
+                    band1.GetBlockData(0, i, cols, 1, cols, 1, data1);
+                }
+                for (int j = 0; j < cols; j++) {
+                    if (data1[j] == nodata1)
+                        data[j] = (float) nodata1;
+                }
+                newband.SaveBlockData(0, i, cols, 1, data);
+            }
+            rasterBand.ClearStatistics();
+            band1.ClearStatistics();
+            pfc.Dispose();
+            logger.info("裁剪成功!!!");
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
         }
-        rasterBand.ClearStatistics();
-        band1.ClearStatistics();
-        pfc.Dispose();
-        logger.info("裁剪成功!!!");
+        return 1;
     }
 }

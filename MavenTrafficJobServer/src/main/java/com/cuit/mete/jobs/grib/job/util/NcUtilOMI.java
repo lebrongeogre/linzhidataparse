@@ -167,8 +167,8 @@ public class NcUtilOMI {
                     dataGrid.setLat2(latList[latList.length - 1]);
                     dataGrid.setLon1(lonList[0]);
                     dataGrid.setLon2(lonList[lonList.length - 1]);
-                    dataGrid.setxCellSize((float) 0.25);
-                    dataGrid.setyCellSize((float) 0.25);
+                    dataGrid.setxCellSize((float)(1.0D * (double)latList[latList.length-1] - (double)latList[0]) / (float)latList.length);
+                    dataGrid.setyCellSize((float)(1.0D * (double)lonList[lonList.length-1] - (double)lonList[0]) / (float)lonList.length);
                     ncBasicMeta.setDataGrid(dataGrid);
                 }
             } catch (Exception e) {

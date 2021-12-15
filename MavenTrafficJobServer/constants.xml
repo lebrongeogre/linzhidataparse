@@ -121,17 +121,29 @@
         <entry key="FFDIstyles">ffdistyle</entry>
     </map>
 
+
+    <map id="ClipRasterProcess">
+        <map id="UVI_INDEX_Clip">
+            <entry key="rasterFiles">D:\temp\outtemptif</entry>
+            <entry key="shiliang">D:\monkey\bj\xz\raster\xzClip1.tif</entry>
+            <entry key="outFile">D:\monkey\uviClip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+    </map>
+
     <map id="DealGrib2GeoServerProcess">
 
         <entry key="desc">智能网格预报处理转GeoServer</entry>
         <entry key="processClass">com.cuit.mete.jobs.grib.job.DealGrib2GeoServerProcess</entry>
-        <entry key="temptifpath">d:\temp\outtemptif</entry>
         <entry key="trigger">0 31 */1 * * ?</entry>
         <list id="Files">
 
             <!--<entry>UVI_INDEX</entry>-->
-            <!--<entry>OMI_O3</entry>-->
-            <entry>UVI_INDEX_YEAR</entry>
+            <entry>OMI_O3</entry>
+<!--            <entry>UVI_INDEX_YEAR</entry>-->
             <!--<entry>UVI_INDEX_DOSE_YEAR</entry>-->
             <!--
              <entry>RTPRE</entry>
@@ -143,6 +155,23 @@
              <entry>SPHC_TMP</entry>
              -->
         </list>
+
+        <map id="UVI_INDEX_Clip">
+            <entry key="path">D:\temp\outtemptif</entry>
+
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+            <entry key="elementname">uvi年度指数产品</entry>
+            <entry key="temptifpath">D:\out\uviclip</entry>
+
+
+            <map id="gridsets">
+            </map>
+        </map>
+
 
         <map id="UVI_INDEX_YEAR">
             <entry key="path">D:\ncFile\temis</entry>
@@ -223,14 +252,17 @@
         <map id="OMI_O3">
             <entry key="path">D:\ncFile\OMI\O3</entry>
             <entry key="fileNamePattern">
-                <![CDATA[.he]]>
+                <![CDATA[.he5]]>
             </entry>
+
+            <entry key="temptifpath">D:\temp\omi\o3</entry>
+
             <entry key="Datatype">臭氧</entry>
             <entry key="times">0</entry>
             <entry key="element">Ozone vertical column density</entry>
             <entry key="elementname">臭氧柱浓度</entry>
             <!-- 日期时间YYYYMMDDHH开始位置  -->
-            <entry key="datepos">5</entry>
+            <entry key="datepos">21</entry>
             <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
             <entry key="Range">ALL</entry>
             <map id="gridsets">

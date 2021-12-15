@@ -58,8 +58,9 @@ public class DealGrib2GeoServerProcess extends BaseJob {
 
         //获取配置文件中内容
         List<String> fileFlist = (List<String>) config.get("Files");
+        Map<String,Object> typeConfig = (Map<String, Object>) config.get(fileFlist.get(0));
 
-        String temptifpath = (String) config.get("temptifpath");
+        String temptifpath = (String) typeConfig.get("temptifpath");
         if (StringUtils.isEmpty(temptifpath)) {
             temptifpath = "\\temptfidata";
         }
@@ -71,6 +72,7 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         if (fileFlist != null && fileFlist.size() > 0) {
             for (int i = 0; i < fileFlist.size(); i++) {
                 String fileFlag = fileFlist.get(i);
+
                 Map<String, Object> dealFileConfig = (Map<String, Object>) config.get(fileFlag);
                 if (dealFileConfig != null) {
                     String filePath = (String) dealFileConfig.get("path");
@@ -92,6 +94,7 @@ public class DealGrib2GeoServerProcess extends BaseJob {
                     int idatepos = Integer.parseInt(datepos);
 
                     File[] allFiles = FileUtil.getAllFiles(new File(filePath), fileNamePattern);
+                    logger.debug("文件列表读取完成，共有" + allFiles.length + "个文件......");
                     if (allFiles != null && allFiles.length >= 1) {
 
                         File[] dealllFiles = null;
@@ -133,11 +136,12 @@ public class DealGrib2GeoServerProcess extends BaseJob {
 
                         for (int j = 0; j < dealllFiles.length; j++) {
                             File file = allFiles[j];
-
-                            String sd = file.getName().substring(idatepos, idatepos + 8);
-                            //YYYYMMDDHH
-                            //Date dataDate = DateUtil.parseDateTimeSecond(sd + "000000");
-                            Date dataDate = new Date();
+                            logger.debug("==============================开始处理文件[" + file.getName() + "]==============================");
+                            String sd = file.getName().substring(idatepos, idatepos + 9).replaceAll("[^0-9]", "");
+                            //YYYYMMDD
+                            Date dataDate = DateUtil.parseDateTimeSecond(sd + "000000");
+                            logger.debug("当前日期为" + sd + "......");
+                            //Date dataDate = new Date();
                             if (dataDate != null) {
                                 Calendar calData = Calendar.getInstance();
                                 calData.setTime(dataDate);
@@ -150,11 +154,10 @@ public class DealGrib2GeoServerProcess extends BaseJob {
                                     //先读元数据
                                     NcBasicMeta ncBasicMeta = NcUtilOMI.getSPHDNcDataMetaData(file.getAbsolutePath(), element);
                                     //NcBasicMeta ncBasicMeta = NcUtilTemis.getSPHDNcDataMetaData(file.getAbsolutePath(), element);
-
+                                    logger.debug("nc文件读取完成，准备写tiff文件......");
                                     DataGrid dataGrid = ncBasicMeta.getDataGrid();
                                     if (dataGrid != null) {
                                         //处理该文件
-
                                         if (dataGrid != null) {
                                             List<GridPoint> data = ncBasicMeta.getGridPoints();
                                             boolean flag = true;
@@ -176,14 +179,13 @@ public class DealGrib2GeoServerProcess extends BaseJob {
                                                 }
                                             }
                                             if (flag) {
-
                                                 //生成文件
                                                 String tempath = temptifpath;
                                                 String layername = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi";
-                                                 String outtiffile = FileUtil.getFileNameWithoutExt(file) + "_" + "uvi" + ".tif";
+                                                String outtiffile = sd + ".tif";
                                                 //获取开始时间
                                                 startTime = System.currentTimeMillis();
-                                                transArrar2Tif(dataFloat, new Point(dataGrid.getLon1(), dataGrid.getLat2()), dataGrid.getxCellSize(), dataGrid.getyCellSize(), dataGrid.getCols()  , dataGrid.getRows()  , tempath, outtiffile);
+                                                transArrar2Tif(dataFloat, new Point(dataGrid.getLon1(), dataGrid.getLat2()), dataGrid.getxCellSize(), dataGrid.getyCellSize(), dataGrid.getCols(), dataGrid.getRows(), tempath, outtiffile);
 
                                                 //获取结束时间
                                                 endTime = System.currentTimeMillis();
@@ -219,44 +221,58 @@ public class DealGrib2GeoServerProcess extends BaseJob {
 
 
     public void transArrar2Tif(float[] data, Point leftTop, double xCellSize, double yCellSize, int cols, int rows, String path, String tifFileName) {
-        //先启动许可，引入本地gdal-data
-        LicenseEngine licenseEngine = new LicenseEngine();
-        licenseEngine.StartUsing();
+        boolean retFlag = true;
+        GeneralRasterDataset newdataset2 = null;
+        MemRasterDataset newdataset = null;
+        try {
+            //先启动许可，引入本地gdal-data
+            LicenseEngine licenseEngine = new LicenseEngine();
+            licenseEngine.StartUsing();
 
-        SpatialReference psp = new SpatialReference("EPSG:4326");
-        MemRasterWorkspaceFactory pFac = new MemRasterWorkspaceFactory();
 
-        MemRasterWorkspace work = pFac.CreateWorkspace();
-        MemRasterDataset newdataset = work.CreateRasterDataset(tifFileName, leftTop, xCellSize, yCellSize, cols , rows , 1, RasterDataType.rdtFloat32, 0, psp);
-        RasterBand newband = newdataset.getRasterBand(0);
-        newband.SaveBlockData(0, 0, cols , rows , data);
-        SpatialReference pspto = new SpatialReference("EPSG:4326");
+            SpatialReference psp = new SpatialReference("EPSG:4326");
+            MemRasterWorkspaceFactory pFac = new MemRasterWorkspaceFactory();
 
-        Envelope env = newdataset.getExtent();
-        CoordinateTransformation pTrans = new CoordinateTransformation(psp, pspto);
-        pTrans.BeginTransform();
-        env.Project(pTrans);
+            MemRasterWorkspace work = pFac.CreateWorkspace();
+            newdataset = work.CreateRasterDataset(tifFileName, leftTop, xCellSize, yCellSize, cols, rows, 1, RasterDataType.rdtFloat32, -32768, psp);
+            RasterBand newband = newdataset.getRasterBand(0);
+            newband.SaveBlockData(0, 0, cols, rows, data);
+            SpatialReference pspto = new SpatialReference("EPSG:4326");
 
-        double cellSize = 0.25;
-        double right = env.getRight();
-        double left = env.getLeft();
-        double top = env.getTop();
-        double bottom = env.getBottom();
-        int cols2 = (int) ((right - left) / cellSize);
-        int rows2 = (int) ((top - bottom) / cellSize);
-        float[] data2 = new float[cols2 * rows2];
-        Point leftTop2 = new Point(env.getLeft(), env.getTop());
-        newband.GetBlockDataByCoord(leftTop2, cellSize, cols2, rows2, data2, pspto, -32768, true);
+            Envelope env = newdataset.getExtent();
+            CoordinateTransformation pTrans = new CoordinateTransformation(psp, pspto);
+            pTrans.BeginTransform();
+            env.Project(pTrans);
 
-        RasterBand newband2 = null;
-        GeneralRasterWorkspaceFactory pFac2 = new GeneralRasterWorkspaceFactory();
-        GeneralRasterWorkspace work2 = pFac2.OpenWorkspace(path);
-        GeneralRasterDataset newdataset2 = work2.CreateRasterDataset(tifFileName, leftTop2, cellSize, cellSize, cols2, rows2, 1, RasterDataType.rdtFloat32, RasterCreateFileType.rcftTiff, -32768, pspto);
-        newband2 = newdataset2.getRasterBand(0);
-        newband2.SaveBlockData(0, 0, cols2, rows2, data2);
-        newdataset2.Dispose();
-        newdataset.Dispose();
-        logger.info("栅格文件生成成功，保存位置:" + path + ",文件名称：" + tifFileName);
+            double cellSize = 0.25;
+            double right = env.getRight();
+            double left = env.getLeft();
+            double top = env.getTop();
+            double bottom = env.getBottom();
+            int cols2 = (int) ((right - left) / cellSize);
+            int rows2 = (int) ((top - bottom) / cellSize);
+            float[] data2 = new float[cols2 * rows2];
+            Point leftTop2 = new Point(env.getLeft(), env.getTop());
+            newband.GetBlockDataByCoord(leftTop2, cellSize, cols2, rows2, data2, pspto, -32768, true);
+
+            RasterBand newband2 = null;
+            GeneralRasterWorkspaceFactory pFac2 = new GeneralRasterWorkspaceFactory();
+            GeneralRasterWorkspace work2 = pFac2.OpenWorkspace(path);
+            newdataset2 = work2.CreateRasterDataset(tifFileName, leftTop2, cellSize, cellSize, cols2, rows2, 1, RasterDataType.rdtFloat32, RasterCreateFileType.rcftTiff, -32768, pspto);
+            newband2 = newdataset2.getRasterBand(0);
+            newband2.SaveBlockData(0, 0, cols2, rows2, data2);
+            logger.debug("栅格文件生成成功，保存位置:" + path + ",文件名称：" + tifFileName);
+        } catch (Exception e) {
+            logger.error("栅格文件生成出错:" + e.getMessage());
+            retFlag = false;
+        } finally {
+            if (newdataset2 != null) {
+                newdataset2.Dispose();
+            }
+            if (newdataset != null) {
+                newdataset.Dispose();
+            }
+        }
     }
 
     public void transArrar2IntTif(float[] data, Point leftTop, double xCellSize, double yCellSize, int cols, int rows, String path, String tifFileName) {
