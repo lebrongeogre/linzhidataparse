@@ -15,6 +15,7 @@ import com.cuit.mete.Geometry.SpatialReference;
 
 
 import com.cuit.mete.jobs.grib.job.util.NcUtilOMI;
+import com.cuit.mete.jobs.grib.job.util.NcUtilTemis;
 import com.cuit.mete.jobs.grib.job.vo.NcBasicMeta;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -61,13 +62,13 @@ public class DealGrib2GeoServerProcess extends BaseJob {
         Map<String,Object> typeConfig = (Map<String, Object>) config.get(fileFlist.get(0));
 
         String temptifpath = (String) typeConfig.get("temptifpath");
+        System.out.println(temptifpath);
         if (StringUtils.isEmpty(temptifpath)) {
             temptifpath = "\\temptfidata";
         }
         if (!FileUtil.isExist(temptifpath)) {
             FileUtil.mkDir(temptifpath);
         }
-
 
         if (fileFlist != null && fileFlist.size() > 0) {
             for (int i = 0; i < fileFlist.size(); i++) {

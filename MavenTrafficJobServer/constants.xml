@@ -121,16 +121,272 @@
         <entry key="FFDIstyles">ffdistyle</entry>
     </map>
 
-
     <map id="ClipRasterProcess">
-        <map id="UVI_INDEX_Clip">
-            <entry key="rasterFiles">D:\temp\outtemptif</entry>
+        <map id="AOD_Clip">
+            <entry key="rasterFiles">G:\AOD\geo_out</entry>
             <entry key="shiliang">D:\monkey\bj\xz\raster\xzClip1.tif</entry>
-            <entry key="outFile">D:\monkey\uviClip</entry>
+            <entry key="outFile">G:\AOD_StaClip\clip</entry>
             <entry key="fileNamePattern">
                 <![CDATA[.nc]]>
             </entry>
             <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+
+        <map id="OMI_NO2_Clip">
+            <entry key="rasterFiles">D:\temp\omi\no2</entry>
+            <entry key="shiliang">D:\monkey\bj\xka\raster\temp.tif</entry>
+            <entry key="outFile">E:\monkey\omi\no2Clip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+
+        <map id="OMI_O3_Clip">
+            <entry key="rasterFiles">G:\myPaper\omiNCread\o3</entry>
+            <entry key="shiliang">D:\monkey\bj\xka\raster\temp.tif</entry>
+            <entry key="outFile">E:\monkey\omi\o3Clip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+
+        <map id="OMI_SO2_Clip">
+            <entry key="rasterFiles">G:\myPaper\omiNCread\so2</entry>
+            <entry key="shiliang">D:\monkey\bj\xka\raster\temp.tif</entry>
+            <entry key="outFile">G:\AOD_StaClip\clip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+
+        <map id="MODIS_AOD_Clip">
+            <entry key="shiliang">D:\monkey\bj\xka\raster\temp1.tif</entry>
+            <entry key="rasterFiles">G:\AOD\geo_out</entry>
+            <entry key="outFile">G:\AOD_StaClip\clip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+
+        <map id="OMI_CO_Clip">
+            <entry key="rasterFiles"></entry>
+            <entry key="shiliang">D:\monkey\bj\xka\raster\temp.tif</entry>
+            <entry key="outFile">E:\monkey\omi\coClip</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.nc]]>
+            </entry>
+            <entry key="Datatype">uvi年度指数产品裁剪</entry>
+        </map>
+    </map>
+
+
+    <map id="SeasonRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">E:\monkey\uviSta\yearMonth</entry>
+            <entry key="outFilePath">E:\monkey\uviSta\year</entry>
+
+            <list id="filterMonths">
+                <entry>12,01,02</entry>
+                <entry>03,04,05</entry>
+                <entry>06,07,08</entry>
+                <entry>09,10,11</entry>
+            </list>
+
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+    <map id="OMISeasonRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">G:\AOD_StaClip\sta\yearMonth</entry>
+            <entry key="outFilePath">G:\AOD_StaClip\sta\season</entry>
+
+            <list id="filterMonths">
+                <entry>12,01,02</entry>
+                <entry>03,04,05</entry>
+                <entry>06,07,08</entry>
+                <entry>09,10,11</entry>
+            </list>
+
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+
+    <map id="YearRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">E:\monkey\uviSta\yearMonth</entry>
+            <entry key="outFilePath">E:\monkey\uviSta\year</entry>
+
+            <list id="filterYear">
+                <entry>2017</entry>
+                <entry>2018</entry>
+                <entry>2019</entry>
+                <entry>2020</entry>
+            </list>
+
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+    <map id="OMIYearRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">G:\AOD_StaClip\sta\yearMonth</entry>
+            <entry key="outFilePath">G:\AOD_StaClip\sta\year</entry>
+
+            <list id="filterYear">
+                <entry>2014</entry>
+                <entry>2015</entry>
+                <entry>2016</entry>
+                <entry>2017</entry>
+                <entry>2018</entry>
+                <entry>2019</entry>
+                <entry>2020</entry>
+            </list>
+
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+
+    </map>
+
+
+    <map id="OMIMonthRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">G:\AOD_StaClip\sta\yearMonth</entry>
+            <entry key="outFilePath">G:\AOD_StaClip\sta\month</entry>
+            <list id="filterMonth">
+                <!-- 需要插值的因子 -->
+                <entry>01</entry>
+                <entry>02</entry>
+                <entry>03</entry>
+                <entry>04</entry>
+                <entry>05</entry>
+                <entry>06</entry>
+                <entry>07</entry>
+                <entry>08</entry>
+                <entry>09</entry>
+                <entry>10</entry>
+                <entry>11</entry>
+                <entry>12</entry>
+            </list>
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+    <map id="MonthRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">E:\monkey\uviSta\yearMonth</entry>
+            <entry key="outFilePath">E:\monkey\uviSta\month</entry>
+            <list id="filterMonth">
+                <!-- 需要插值的因子 -->
+                <entry>01</entry>
+                <entry>02</entry>
+                <entry>03</entry>
+                <entry>04</entry>
+                <entry>05</entry>
+                <entry>06</entry>
+                <entry>07</entry>
+                <entry>08</entry>
+                <entry>09</entry>
+                <entry>10</entry>
+                <entry>11</entry>
+                <entry>12</entry>
+            </list>
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+    <!--temis-->
+    <map id="YearMonthRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">D:\monkey\uviClip</entry>
+            <entry key="outFilePath">E:\monkey\uviSta\yearMonth</entry>
+            <list id="filterMonth">
+                <!-- 需要插值的因子 -->
+                <entry>01</entry>
+                <entry>02</entry>
+                <entry>03</entry>
+                <entry>04</entry>
+                <entry>05</entry>
+                <entry>06</entry>
+                <entry>07</entry>
+                <entry>08</entry>
+                <entry>09</entry>
+                <entry>10</entry>
+                <entry>11</entry>
+                <entry>12</entry>
+            </list>
+            <list id="filterYear">
+                <!-- 需要插值的因子 -->
+
+                <entry>2017</entry>
+                <entry>2018</entry>
+                <entry>2019</entry>
+                <entry>2020</entry>
+            </list>
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
+        </map>
+    </map>
+
+    <!--omi-->
+    <map id="OMIYearMonthRasterStatisticsProcess">
+        <map id="UVI_RASTER">
+            <entry key="rasterFiles">G:\AOD_StaClip\clip</entry>
+            <entry key="outFilePath">G:\AOD_StaClip\sta\yearMonth</entry>
+            <list id="filterMonth">
+                <!-- 需要插值的因子 -->
+                <entry>01</entry>
+                <entry>02</entry>
+                <entry>03</entry>
+                <entry>04</entry>
+                <entry>05</entry>
+                <entry>06</entry>
+                <entry>07</entry>
+                <entry>08</entry>
+                <entry>09</entry>
+                <entry>10</entry>
+                <entry>11</entry>
+                <entry>12</entry>
+            </list>
+            <list id="filterYear">
+                <!-- 需要插值的因子 -->
+                <entry>2014</entry>
+                <entry>2015</entry>
+                <entry>2016</entry>
+                <entry>2017</entry>
+                <entry>2018</entry>
+                <entry>2019</entry>
+                <entry>2020</entry>
+            </list>
+            <entry key="fileNamePattern">
+                <![CDATA[.tif]]>
+            </entry>
+            <entry key="Datatype">uvi栅格影像</entry>
         </map>
     </map>
 
@@ -142,7 +398,9 @@
         <list id="Files">
 
             <!--<entry>UVI_INDEX</entry>-->
-            <entry>OMI_O3</entry>
+<!--            <entry>OMI_O3</entry>-->
+            <entry>OMI_NO2</entry>
+
 <!--            <entry>UVI_INDEX_YEAR</entry>-->
             <!--<entry>UVI_INDEX_DOSE_YEAR</entry>-->
             <!--
@@ -156,22 +414,56 @@
              -->
         </list>
 
+        <map id="MODIS_AOD">
+            <entry key="path">G:\气溶胶\2014</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.hdf]]>
+            </entry>
+            <entry key="Datatype">modis气溶胶数据</entry>
+            <entry key="times"></entry>
+            <entry key="element">AOT at 0.55 micron for both ocean (Average) (Quality flag=1,2,3) and land (corrected) (Quality flag=3)</entry>
+
+            <entry key="elementname">modis气溶胶数据</entry>
+            <entry key="temptifpath">G:\modisRead\2014</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">6</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="geoserverconfig">
+                <entry key="geoserverurl">http://121.37.165.19:8082/geoserver/</entry>
+                <entry key="username">admin</entry>
+                <entry key="password">geoserver</entry>
+                <entry key="workspaces">jt_nc</entry>
+                <entry key="styles">r01style</entry>
+            </map>
+            <map id="gridsets">
+            </map>
+        </map>
+
         <map id="UVI_INDEX_Clip">
             <entry key="path">D:\temp\outtemptif</entry>
 
             <entry key="fileNamePattern">
                 <![CDATA[.nc]]>
             </entry>
-
             <entry key="Datatype">uvi年度指数产品裁剪</entry>
             <entry key="elementname">uvi年度指数产品</entry>
             <entry key="temptifpath">D:\out\uviclip</entry>
-
-
             <map id="gridsets">
             </map>
         </map>
 
+        <map id="OMI_CLIP">
+            <entry key="path">D:\temp\omi\o3</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.he5]]>
+            </entry>
+            <entry key="Datatype">omi卫星臭氧数据裁剪</entry>
+            <entry key="elementname">omi卫星臭氧数据裁剪</entry>
+            <entry key="temptifpath">D:\out\uviclip</entry>
+            <map id="gridsets">
+            </map>
+        </map>
 
         <map id="UVI_INDEX_YEAR">
             <entry key="path">D:\ncFile\temis</entry>
@@ -250,13 +542,11 @@
         </map>
 
         <map id="OMI_O3">
-            <entry key="path">D:\ncFile\OMI\O3</entry>
+            <entry key="path">E:\ncFile\omi\o3</entry>
             <entry key="fileNamePattern">
                 <![CDATA[.he5]]>
             </entry>
-
-            <entry key="temptifpath">D:\temp\omi\o3</entry>
-
+            <entry key="temptifpath">E:\temp\omi\o3</entry>
             <entry key="Datatype">臭氧</entry>
             <entry key="times">0</entry>
             <entry key="element">Ozone vertical column density</entry>
@@ -268,6 +558,48 @@
             <map id="gridsets">
             </map>
         </map>
+
+        <map id="OMI_NO2">
+            <entry key="path">D:\ncFile\OMI\no2</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.he5]]>
+            </entry>
+
+            <entry key="temptifpath">D:\temp\omi\no2</entry>
+
+            <entry key="Datatype">二氧化氮</entry>
+            <entry key="times">0</entry>
+            <entry key="element">NO2 vertical column density</entry>
+            <entry key="elementname">二氧化氮柱浓度</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">19</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="gridsets">
+            </map>
+        </map>
+
+
+        <map id="OMI_SO2">
+            <entry key="path">E:\ncFile\omi\so2</entry>
+            <entry key="fileNamePattern">
+                <![CDATA[.he5]]>
+            </entry>
+
+            <entry key="temptifpath">E:\temp\omi\so2</entry>
+
+            <entry key="Datatype">二氧化硫</entry>
+            <entry key="times">0</entry>
+            <entry key="element">Vertical Column Amount SO2 (GEOS-5 Profile)</entry>
+            <entry key="elementname">二氧化硫柱浓度</entry>
+            <!-- 日期时间YYYYMMDDHH开始位置  -->
+            <entry key="datepos">19</entry>
+            <!-- 处理文件的范围，ALL所有，LAST最后一个文件 -->
+            <entry key="Range">ALL</entry>
+            <map id="gridsets">
+            </map>
+        </map>
+
 
 
         <map id="RTPRE">
@@ -682,7 +1014,6 @@
                     <entry key="warn">true</entry>
                 </map>
             </map>
-
         </map>
 
         <map id="cawsRealtimeDataProcess">

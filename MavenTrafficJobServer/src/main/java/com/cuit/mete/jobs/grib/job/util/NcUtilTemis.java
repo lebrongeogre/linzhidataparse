@@ -138,8 +138,8 @@ public class NcUtilTemis {
 
             //分别获取数据、经度、纬度三个变量
             Variable paramVar = getVariableByName(variables, paramName);
-            Variable lat = getVariableByName(variables, "Latitudes of grid cell centres");
-            Variable ln = getVariableByName(variables, "Longitudes of grid cell centres");
+            Variable lat = getVariableByName(variables, "Geodetic Latitude");
+            Variable ln = getVariableByName(variables, "Geodetic Longitude");
 
             //读取经度、纬度、数据数组
             try {
@@ -247,7 +247,7 @@ public class NcUtilTemis {
             while (var9.hasNext()) {
                 Attribute attr = (Attribute) var9.next();
 //                    String s = attr.getFullName();  用来获得属性名称
-                if (attr.getFullName().toLowerCase().equals("title")) {
+                if (attr.getFullName().toLowerCase().equals("long_name")) {
                     long_name = attr.getStringValue().replace(" @ ", "_");
                     long_name = long_name.replaceAll(" ", "_");
                     break;

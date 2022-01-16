@@ -229,7 +229,7 @@ public class NcUtilOMI {
         for (int i = 0; i < variable.getShape(0); i++) {
             for (int j = 0; j < variable.getShape(1); j++) {
                 dataTrans[i][j] = Float.parseFloat(String.valueOf(data[i][j]));
-                dataTrans[i][j] = dataTrans[i][j] / 1000;
+                dataTrans[i][j] = dataTrans[i][j] ;
             }
         }
         return dataTrans;
@@ -415,7 +415,11 @@ public class NcUtilOMI {
                     GridPoint gp = new GridPoint();
                     gp.latitude = formatNumber((double) latList[i], 3);
                     gp.longitude = formatNumber((double) lngList[j], 3);
-                    gp.value = formatNumber((double) data[i][j], 3);
+                    if (data[i][j] > 0){
+                        gp.value = formatNumber((double) data[i][j] / 1000000000000.0, 3);
+                    }else{
+                        gp.value = formatNumber((double) data[i][j], 3);
+                    }
                     gplist.add(gp);
                 }
             }

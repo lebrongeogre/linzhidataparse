@@ -20,6 +20,7 @@ public class MyDateUtil {
 
         int intMonth = 1;
         int count2 = 28;
+        //代表累计天数
         int countAll = 0;
         int intDay = 1;
         String month = "";
@@ -32,12 +33,19 @@ public class MyDateUtil {
         int intNum = Integer.parseInt(num);
         //判断当前天数索引的日期 格式yyyyMMdd
         for (int i = 1; i < 13; i++) {
-            if (Integer.parseInt(num) <= getCountByMonth(i, count2)) {
+            if (intNum <= getCountByMonth(i, count2)) {
                 intMonth = i;
                 intDay = Integer.parseInt(num) - countAll - getCountByMonth(i - 1, count2);
                 break;
             }
             countAll += getCountByMonth(i, count2);
+            if (countAll < intNum){
+                continue;
+            }else {
+                intMonth = i;
+                intDay = getCountByMonth(i, count2) - (countAll - intNum);
+                break;
+            }
         }
         if (intDay < 10){
             day = "0"+intDay;
@@ -88,4 +96,10 @@ public class MyDateUtil {
         return sdf.format(date);
     }
 
+    public static void main(String[] args) throws ParseException {
+        MyDateUtil myDateUtil = new MyDateUtil();
+        myDateUtil.getDateOfYear("2015","132");
+        System.out.println();
+
+    }
 }

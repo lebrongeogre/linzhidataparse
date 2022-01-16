@@ -72,6 +72,8 @@ public class ClipRasterProcess extends BaseJob {
 
         //----------------------开始遍历栅格文件，并依次处理-------------------------
         if (fileList.size() != 0) {
+            //先启动许可，引入本地gdal-data
+
             //表示不为空
             for (String tempFile : fileList) {
                 //从文件中获取文件保存名称.0
@@ -79,9 +81,6 @@ public class ClipRasterProcess extends BaseJob {
                 //根据日期字符串获取日期
                 try{
                     String fileName = getFileName(dateStr);
-                    //先启动许可，引入本地gdal-data
-                    LicenseEngine licenseEngine = new LicenseEngine();
-                    licenseEngine.StartUsing();
                     logger.info("开始处理" + tempFile + "文件......");
                     int ref = baseMethod.clipRaster(slPath, tempFile, outTifPath,fileName);
                     logger.info("文件" + tempFile + "处理成功......");

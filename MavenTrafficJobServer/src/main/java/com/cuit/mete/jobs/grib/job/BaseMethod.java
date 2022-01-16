@@ -3,9 +3,12 @@ package com.cuit.mete.jobs.grib.job;
 
 import com.cuit.mete.DataSources.*;
 import com.cuit.mete.Geometry.*;
+import com.cuit.mete.Geometry.Geometry;
 import com.cuit.mete.RasterUtils.ncPoint;
 import com.cuit.mete.SA.*;
 import org.apache.log4j.Logger;
+import org.gdal.gdal.gdal;
+import org.gdal.ogr.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -476,7 +479,7 @@ public class BaseMethod {
             FeatureToRaster ftr = new FeatureToRaster();
             ftr.setEnvironment(envi);
             MemRasterTarget target = new MemRasterTarget();
-          //  RasterBand band1 = ftr.Convert(pfc, "FID", target, -32768);
+            //RasterBand band1 = ftr.Convert(pfc, "FID", target, -32768);
 
             RasterBand band1 = readRaster(clipsource);
             //获取裁剪边界范围
@@ -558,4 +561,6 @@ public class BaseMethod {
         }
         return 1;
     }
+
+
 }
